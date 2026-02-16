@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "開運ルナカレンダー",
   description:
     "月の満ち欠け × タロットカードで毎日の運勢がわかる開運カレンダーアプリのサービスサイト。",
-  defaultUrl: "https://example.com"
+  defaultUrl: "https://www.kaiun-calendar.com"
 };
 
 export function getSiteUrl(): string {
