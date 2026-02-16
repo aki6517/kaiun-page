@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { TrackingTagInjector } from "@/components/tracking-tag-injector";
 import "./globals.css";
 import { getSiteUrl, siteConfig } from "@/lib/site";
@@ -20,7 +21,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <Script id="gtm-head" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TXC4STFD');`}
+        </Script>
+      </head>
       <body className="min-h-screen bg-[#0D0B14] text-[#E8E4F0] antialiased">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TXC4STFD"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <TrackingTagInjector />
         <header className="border-b border-white/10">
           <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
