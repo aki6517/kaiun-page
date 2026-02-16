@@ -31,7 +31,6 @@ export default function RootLayout({
               <Link href="/">ホーム</Link>
               <Link href="/blog">ブログ</Link>
               <Link href="/privacy-policy">プライバシー</Link>
-              <Link href="/settings/tracking-tags">タグ設定</Link>
             </div>
           </nav>
         </header>
@@ -40,11 +39,6 @@ export default function RootLayout({
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-[#B8B3C4]">
             <p>© 2026 開運ルナカレンダー</p>
             <p>月の満ち欠け × タロットカードで毎日の意思決定をサポート。</p>
-            <p>
-              <Link href="/settings/tracking-tags" className="text-[#C8A87C]">
-                計測タグ設定画面
-              </Link>
-            </p>
           </div>
         </footer>
       </body>

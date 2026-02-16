@@ -1373,193 +1373,6 @@
     }
 
     /* ========================================
-       TAG SETTINGS EDITOR
-       ======================================== */
-    .tag-editor-launch {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 10020;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      background: rgba(14, 15, 26, 0.9);
-      color: var(--gold-light);
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      padding: 0.65rem 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-      opacity: 0.8;
-    }
-
-    .tag-editor-launch:hover {
-      opacity: 1;
-    }
-
-    .tag-editor-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 10030;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(4, 6, 12, 0.7);
-      padding: 1rem;
-    }
-
-    .tag-editor-overlay.open {
-      display: flex;
-    }
-
-    .tag-editor-panel {
-      width: min(920px, 96vw);
-      max-height: 92vh;
-      overflow: auto;
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 18px;
-      background: linear-gradient(160deg, rgba(30, 25, 48, 0.98), rgba(14, 15, 26, 0.98));
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
-      padding: 1.4rem;
-    }
-
-    .tag-editor-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .tag-editor-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-      color: var(--luna-moonlight);
-      margin-bottom: 0.3rem;
-    }
-
-    .tag-editor-sub {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    .tag-editor-close {
-      border: 1px solid rgba(155, 127, 184, 0.35);
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-radius: 999px;
-      padding: 0.45rem 0.9rem;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .tag-editor-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .tag-editor-block {
-      border: 1px solid rgba(155, 127, 184, 0.22);
-      border-radius: 14px;
-      padding: 1rem;
-      background: rgba(10, 12, 20, 0.4);
-    }
-
-    .tag-editor-block-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .tag-editor-block h3 {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--luna-moonlight);
-    }
-
-    .tag-editor-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-weight: 400;
-    }
-
-    .tag-editor-toggle input {
-      accent-color: var(--gold);
-    }
-
-    .tag-editor-hint {
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      line-height: 1.7;
-      margin-bottom: 0.65rem;
-    }
-
-    .tag-editor-textarea {
-      width: 100%;
-      min-height: 150px;
-      resize: vertical;
-      border-radius: 10px;
-      border: 1px solid rgba(155, 127, 184, 0.25);
-      background: rgba(4, 6, 12, 0.86);
-      color: var(--text-light);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 0.8rem;
-      line-height: 1.6;
-      padding: 0.8rem;
-    }
-
-    .tag-editor-textarea::placeholder {
-      color: rgba(184, 179, 196, 0.55);
-    }
-
-    .tag-editor-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1rem;
-    }
-
-    .tag-editor-btn {
-      border: 1px solid rgba(155, 127, 184, 0.35);
-      background: rgba(14, 15, 26, 0.6);
-      color: var(--text-light);
-      border-radius: 10px;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-
-    .tag-editor-btn.primary {
-      border-color: rgba(212, 175, 55, 0.45);
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.06));
-      color: var(--gold-light);
-    }
-
-    .tag-editor-status {
-      margin-top: 0.8rem;
-      min-height: 1.2rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .tag-editor-status.error {
-      color: #ff9a9a;
-    }
-
-    /* ========================================
        RESPONSIVE
        ======================================== */
     @media (max-width: 768px) {
@@ -1579,8 +1392,6 @@
       .showcase-card { width: clamp(80px, 22vw, 110px); }
       .float-deco { display: none; }
       .constellation { display: none; }
-      .tag-editor-panel { padding: 1rem; }
-      .tag-editor-textarea { min-height: 120px; }
     }
 
     @media (max-width: 480px) {
@@ -1589,157 +1400,9 @@
       .corner-ornament { width: 40px; height: 40px; }
     }
   </style>
-
-  <script>
-    (function () {
-      const storageKey = 'luna_tag_injection_settings_v1';
-      const slotAttr = 'data-tag-injection-slot';
-      const slotName = 'head';
-
-      function normalize(raw) {
-        const source = raw && typeof raw === 'object' ? raw : {};
-        return {
-          headEnabled: source.headEnabled !== false,
-          headHtml: typeof source.headHtml === 'string' ? source.headHtml : '',
-          bodyStartEnabled: source.bodyStartEnabled !== false,
-          bodyStartHtml: typeof source.bodyStartHtml === 'string' ? source.bodyStartHtml : '',
-          bodyEndEnabled: source.bodyEndEnabled !== false,
-          bodyEndHtml: typeof source.bodyEndHtml === 'string' ? source.bodyEndHtml : ''
-        };
-      }
-
-      function cloneNode(node, slot, isTopLevel) {
-        if (node.nodeType === Node.TEXT_NODE) {
-          if (isTopLevel) return null;
-          return document.createTextNode(node.textContent || '');
-        }
-        if (node.nodeType !== Node.ELEMENT_NODE) return null;
-
-        if (node.tagName.toLowerCase() === 'script') {
-          const script = document.createElement('script');
-          Array.from(node.attributes).forEach((attr) => script.setAttribute(attr.name, attr.value));
-          script.text = node.textContent || '';
-          script.setAttribute(slotAttr, slot);
-          return script;
-        }
-
-        const cloned = document.createElement(node.tagName.toLowerCase());
-        Array.from(node.attributes).forEach((attr) => cloned.setAttribute(attr.name, attr.value));
-        cloned.setAttribute(slotAttr, slot);
-        Array.from(node.childNodes).forEach((child) => {
-          const childNode = cloneNode(child, slot, false);
-          if (childNode) cloned.appendChild(childNode);
-        });
-        return cloned;
-      }
-
-      function buildFragment(html, slot) {
-        const source = (html || '').trim();
-        if (!source) return null;
-        const template = document.createElement('template');
-        template.innerHTML = source;
-        const fragment = document.createDocumentFragment();
-        Array.from(template.content.childNodes).forEach((node) => {
-          const cloned = cloneNode(node, slot, true);
-          if (cloned) fragment.appendChild(cloned);
-        });
-        return fragment.childNodes.length ? fragment : null;
-      }
-
-      try {
-        const parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
-        const settings = normalize(parsed);
-        document.head.querySelectorAll('[' + slotAttr + '="' + slotName + '"]').forEach((el) => el.remove());
-        if (settings.headEnabled) {
-          const fragment = buildFragment(settings.headHtml, slotName);
-          if (fragment) document.head.appendChild(fragment);
-        }
-        window.__lunaTagInjectionBootstrap = { head: true, bodyStart: false };
-        window.__lunaTagInjectionSettings = settings;
-      } catch (error) {
-        window.__lunaTagInjectionBootstrap = { head: true, bodyStart: false };
-      }
-    })();
-  </script>
 </head>
 
 <body>
-
-  <script>
-    (function () {
-      const storageKey = 'luna_tag_injection_settings_v1';
-      const slotAttr = 'data-tag-injection-slot';
-      const slotName = 'body-start';
-
-      function normalize(raw) {
-        const source = raw && typeof raw === 'object' ? raw : {};
-        return {
-          headEnabled: source.headEnabled !== false,
-          headHtml: typeof source.headHtml === 'string' ? source.headHtml : '',
-          bodyStartEnabled: source.bodyStartEnabled !== false,
-          bodyStartHtml: typeof source.bodyStartHtml === 'string' ? source.bodyStartHtml : '',
-          bodyEndEnabled: source.bodyEndEnabled !== false,
-          bodyEndHtml: typeof source.bodyEndHtml === 'string' ? source.bodyEndHtml : ''
-        };
-      }
-
-      function cloneNode(node, slot, isTopLevel) {
-        if (node.nodeType === Node.TEXT_NODE) {
-          if (isTopLevel) return null;
-          return document.createTextNode(node.textContent || '');
-        }
-        if (node.nodeType !== Node.ELEMENT_NODE) return null;
-
-        if (node.tagName.toLowerCase() === 'script') {
-          const script = document.createElement('script');
-          Array.from(node.attributes).forEach((attr) => script.setAttribute(attr.name, attr.value));
-          script.text = node.textContent || '';
-          script.setAttribute(slotAttr, slot);
-          return script;
-        }
-
-        const cloned = document.createElement(node.tagName.toLowerCase());
-        Array.from(node.attributes).forEach((attr) => cloned.setAttribute(attr.name, attr.value));
-        cloned.setAttribute(slotAttr, slot);
-        Array.from(node.childNodes).forEach((child) => {
-          const childNode = cloneNode(child, slot, false);
-          if (childNode) cloned.appendChild(childNode);
-        });
-        return cloned;
-      }
-
-      function buildFragment(html, slot) {
-        const source = (html || '').trim();
-        if (!source) return null;
-        const template = document.createElement('template');
-        template.innerHTML = source;
-        const fragment = document.createDocumentFragment();
-        Array.from(template.content.childNodes).forEach((node) => {
-          const cloned = cloneNode(node, slot, true);
-          if (cloned) fragment.appendChild(cloned);
-        });
-        return fragment.childNodes.length ? fragment : null;
-      }
-
-      try {
-        const cached = window.__lunaTagInjectionSettings;
-        const parsed = cached || normalize(JSON.parse(localStorage.getItem(storageKey) || '{}'));
-        document.body.querySelectorAll('[' + slotAttr + '="' + slotName + '"]').forEach((el) => el.remove());
-        if (parsed.bodyStartEnabled) {
-          const fragment = buildFragment(parsed.bodyStartHtml, slotName);
-          if (fragment) document.body.insertBefore(fragment, document.body.firstChild);
-        }
-        const flags = window.__lunaTagInjectionBootstrap || {};
-        flags.bodyStart = true;
-        window.__lunaTagInjectionBootstrap = flags;
-        window.__lunaTagInjectionSettings = parsed;
-      } catch (error) {
-        const flags = window.__lunaTagInjectionBootstrap || {};
-        flags.bodyStart = true;
-        window.__lunaTagInjectionBootstrap = flags;
-      }
-    })();
-  </script>
 
   <!-- SVG DEFS (hidden, reusable icons) -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -2572,122 +2235,34 @@
     <p class="footer-copy">&copy; 2026 Luna Fortune Calendar. All rights reserved.</p>
   </footer>
 
-  <button type="button" class="tag-editor-launch" id="tagEditorOpenBtn" aria-haspopup="dialog" aria-controls="tagEditorOverlay">
-    計測タグ設定
-  </button>
-
-  <div class="tag-editor-overlay" id="tagEditorOverlay" hidden>
-    <section class="tag-editor-panel" role="dialog" aria-modal="true" aria-labelledby="tagEditorTitle">
-      <div class="tag-editor-head">
-        <div>
-          <h2 class="tag-editor-title" id="tagEditorTitle">計測タグ設定</h2>
-          <p class="tag-editor-sub">
-            `head`、`body` 開始直後、`body` 終了直前に任意タグを保存・反映できます。<br>
-            保存先はこのブラウザのローカルストレージです。
-          </p>
-        </div>
-        <button type="button" class="tag-editor-close" id="tagEditorCloseBtn">閉じる</button>
-      </div>
-
-      <div class="tag-editor-grid">
-        <div class="tag-editor-block">
-          <div class="tag-editor-block-head">
-            <h3>`head` に挿入</h3>
-            <label class="tag-editor-toggle">
-              <input type="checkbox" id="tagHeadEnabled" checked>
-              有効
-            </label>
-          </div>
-          <p class="tag-editor-hint">Googleタグ、GTM、Meta Pixel など読み込みタグ向け。</p>
-          <textarea class="tag-editor-textarea" id="tagHeadCode" placeholder="<script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX&quot;><\/script>"></textarea>
-        </div>
-
-        <div class="tag-editor-block">
-          <div class="tag-editor-block-head">
-            <h3>`body` 開始直後に挿入</h3>
-            <label class="tag-editor-toggle">
-              <input type="checkbox" id="tagBodyStartEnabled" checked>
-              有効
-            </label>
-          </div>
-          <p class="tag-editor-hint">GTMの `noscript` iframe など、`body` 冒頭に置きたいタグ向け。</p>
-          <textarea class="tag-editor-textarea" id="tagBodyStartCode" placeholder="<noscript><iframe src=&quot;https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX&quot; height=&quot;0&quot; width=&quot;0&quot; style=&quot;display:none;visibility:hidden&quot;></iframe></noscript>"></textarea>
-        </div>
-
-        <div class="tag-editor-block">
-          <div class="tag-editor-block-head">
-            <h3>`body` 終了直前に挿入</h3>
-            <label class="tag-editor-toggle">
-              <input type="checkbox" id="tagBodyEndEnabled" checked>
-              有効
-            </label>
-          </div>
-          <p class="tag-editor-hint">遅延読み込みしたいタグや補助スクリプト向け。</p>
-          <textarea class="tag-editor-textarea" id="tagBodyEndCode" placeholder="<script>console.log('tracking tag')<\/script>"></textarea>
-        </div>
-      </div>
-
-      <div class="tag-editor-actions">
-        <button type="button" class="tag-editor-btn" id="tagEditorPresetGa4Btn">GA4テンプレート</button>
-        <button type="button" class="tag-editor-btn" id="tagEditorPresetGtmBtn">GTMテンプレート</button>
-        <button type="button" class="tag-editor-btn primary" id="tagEditorSaveBtn">保存して適用</button>
-        <button type="button" class="tag-editor-btn" id="tagEditorClearBtn">保存設定をクリア</button>
-      </div>
-      <p class="tag-editor-status" id="tagEditorStatus" aria-live="polite"></p>
-    </section>
-  </div>
-
   <!-- ============================
        JAVASCRIPT
        ============================ -->
   <script>
-    const TAG_SETTINGS_STORAGE_KEY = 'luna_tag_injection_settings_v1';
-    const TAG_SLOT_ATTR = 'data-tag-injection-slot';
-    const TAG_SLOT_HEAD = 'head';
-    const TAG_SLOT_BODY_START = 'body-start';
-    const TAG_SLOT_BODY_END = 'body-end';
+    const TRACKING_STORAGE_KEY = 'kaiun-tracking-tags';
+    const TRACKING_SLOT_ATTR = 'data-kaiun-tracking-slot';
 
-    function getDefaultTagSettings() {
-      return {
-        headEnabled: true,
-        headHtml: '',
-        bodyStartEnabled: true,
-        bodyStartHtml: '',
-        bodyEndEnabled: true,
-        bodyEndHtml: ''
-      };
-    }
-
-    function normalizeTagSettings(raw) {
-      const defaults = getDefaultTagSettings();
+    function normalizeTrackingSettings(raw) {
       const source = raw && typeof raw === 'object' ? raw : {};
       return {
-        headEnabled: source.headEnabled !== false,
-        headHtml: typeof source.headHtml === 'string' ? source.headHtml : defaults.headHtml,
-        bodyStartEnabled: source.bodyStartEnabled !== false,
-        bodyStartHtml: typeof source.bodyStartHtml === 'string' ? source.bodyStartHtml : defaults.bodyStartHtml,
-        bodyEndEnabled: source.bodyEndEnabled !== false,
-        bodyEndHtml: typeof source.bodyEndHtml === 'string' ? source.bodyEndHtml : defaults.bodyEndHtml
+        headTags: typeof source.headTags === 'string' ? source.headTags : '',
+        bodyStartTags: typeof source.bodyStartTags === 'string' ? source.bodyStartTags : '',
+        bodyEndTags: typeof source.bodyEndTags === 'string' ? source.bodyEndTags : ''
       };
     }
 
-    function loadTagSettings() {
+    function loadTrackingSettings() {
       try {
-        const raw = localStorage.getItem(TAG_SETTINGS_STORAGE_KEY);
-        return normalizeTagSettings(raw ? JSON.parse(raw) : {});
+        const raw = localStorage.getItem(TRACKING_STORAGE_KEY);
+        return normalizeTrackingSettings(raw ? JSON.parse(raw) : {});
       } catch (error) {
-        return getDefaultTagSettings();
+        return normalizeTrackingSettings({});
       }
     }
 
-    function saveTagSettings(settings) {
-      localStorage.setItem(TAG_SETTINGS_STORAGE_KEY, JSON.stringify(normalizeTagSettings(settings)));
-    }
-
-    function cloneTagNode(node, slot, isTopLevel) {
+    function cloneTrackingNode(node, slot) {
       if (node.nodeType === Node.TEXT_NODE) {
-        if (isTopLevel) return null;
-        return document.createTextNode(node.textContent || '');
+        return node.textContent && node.textContent.trim() ? document.createTextNode(node.textContent) : null;
       }
       if (node.nodeType !== Node.ELEMENT_NODE) return null;
 
@@ -2695,207 +2270,63 @@
         const script = document.createElement('script');
         Array.from(node.attributes).forEach((attr) => script.setAttribute(attr.name, attr.value));
         script.text = node.textContent || '';
-        script.setAttribute(TAG_SLOT_ATTR, slot);
+        script.setAttribute(TRACKING_SLOT_ATTR, slot);
         return script;
       }
 
-      const clone = document.createElement(node.tagName.toLowerCase());
-      Array.from(node.attributes).forEach((attr) => clone.setAttribute(attr.name, attr.value));
-      clone.setAttribute(TAG_SLOT_ATTR, slot);
+      const cloned = node.cloneNode(false);
+      cloned.setAttribute(TRACKING_SLOT_ATTR, slot);
       Array.from(node.childNodes).forEach((child) => {
-        const childNode = cloneTagNode(child, slot, false);
-        if (childNode) clone.appendChild(childNode);
+        const childNode = cloneTrackingNode(child, slot);
+        if (childNode) cloned.appendChild(childNode);
       });
-      return clone;
+      return cloned;
     }
 
-    function buildTagFragment(html, slot) {
+    function parseTrackingNodes(html, slot) {
       const source = (html || '').trim();
-      if (!source) return null;
+      if (!source) return [];
+
       const template = document.createElement('template');
       template.innerHTML = source;
-      const fragment = document.createDocumentFragment();
-      Array.from(template.content.childNodes).forEach((node) => {
-        const cloned = cloneTagNode(node, slot, true);
-        if (cloned) fragment.appendChild(cloned);
-      });
-      return fragment.childNodes.length ? fragment : null;
+
+      return Array.from(template.content.childNodes)
+        .map((node) => cloneTrackingNode(node, slot))
+        .filter((node) => node !== null);
     }
 
-    function removeTagSlot(slot) {
-      document.querySelectorAll('[' + TAG_SLOT_ATTR + '="' + slot + '"]').forEach((node) => node.remove());
+    function clearTrackingSlot(slot) {
+      document.querySelectorAll('[' + TRACKING_SLOT_ATTR + '="' + slot + '"]').forEach((node) => node.remove());
     }
 
-    function injectTagSlot(target, html, slot, position) {
-      removeTagSlot(slot);
-      const fragment = buildTagFragment(html, slot);
-      if (!fragment) return;
-      if (position === 'afterbegin') {
-        target.insertBefore(fragment, target.firstChild);
-      } else {
-        target.appendChild(fragment);
-      }
-    }
+    function applyTrackingSlot(slot, html) {
+      clearTrackingSlot(slot);
+      const nodes = parseTrackingNodes(html, slot);
+      if (!nodes.length) return;
 
-    function applyTagSettings(settings, options) {
-      const normalized = normalizeTagSettings(settings);
-      const applyOptions = Object.assign({
-        applyHead: true,
-        applyBodyStart: true,
-        applyBodyEnd: true
-      }, options || {});
-
-      if (applyOptions.applyHead && document.head) {
-        injectTagSlot(
-          document.head,
-          normalized.headEnabled ? normalized.headHtml : '',
-          TAG_SLOT_HEAD,
-          'beforeend'
-        );
+      if (slot === 'head') {
+        nodes.forEach((node) => document.head.appendChild(node));
+        return;
       }
 
-      if (document.body && applyOptions.applyBodyStart) {
-        injectTagSlot(
-          document.body,
-          normalized.bodyStartEnabled ? normalized.bodyStartHtml : '',
-          TAG_SLOT_BODY_START,
-          'afterbegin'
-        );
-      }
-
-      if (document.body && applyOptions.applyBodyEnd) {
-        injectTagSlot(
-          document.body,
-          normalized.bodyEndEnabled ? normalized.bodyEndHtml : '',
-          TAG_SLOT_BODY_END,
-          'beforeend'
-        );
-      }
-    }
-
-    const bootstrapFlags = window.__lunaTagInjectionBootstrap || {};
-    const initialTagSettings = normalizeTagSettings(window.__lunaTagInjectionSettings || loadTagSettings());
-    applyTagSettings(initialTagSettings, {
-      applyHead: !bootstrapFlags.head,
-      applyBodyStart: !bootstrapFlags.bodyStart,
-      applyBodyEnd: true
-    });
-    window.__lunaTagInjectionSettings = initialTagSettings;
-
-    function initTagEditor() {
-      const openBtn = document.getElementById('tagEditorOpenBtn');
-      const overlay = document.getElementById('tagEditorOverlay');
-      const closeBtn = document.getElementById('tagEditorCloseBtn');
-      const saveBtn = document.getElementById('tagEditorSaveBtn');
-      const clearBtn = document.getElementById('tagEditorClearBtn');
-      const presetGa4Btn = document.getElementById('tagEditorPresetGa4Btn');
-      const presetGtmBtn = document.getElementById('tagEditorPresetGtmBtn');
-      const statusEl = document.getElementById('tagEditorStatus');
-      const headEnabledEl = document.getElementById('tagHeadEnabled');
-      const headCodeEl = document.getElementById('tagHeadCode');
-      const bodyStartEnabledEl = document.getElementById('tagBodyStartEnabled');
-      const bodyStartCodeEl = document.getElementById('tagBodyStartCode');
-      const bodyEndEnabledEl = document.getElementById('tagBodyEndEnabled');
-      const bodyEndCodeEl = document.getElementById('tagBodyEndCode');
-
-      if (!openBtn || !overlay || !statusEl) return;
-
-      function setStatus(message, isError) {
-        statusEl.textContent = message;
-        statusEl.classList.toggle('error', Boolean(isError));
-      }
-
-      function syncForm(settings) {
-        const normalized = normalizeTagSettings(settings);
-        headEnabledEl.checked = normalized.headEnabled;
-        headCodeEl.value = normalized.headHtml;
-        bodyStartEnabledEl.checked = normalized.bodyStartEnabled;
-        bodyStartCodeEl.value = normalized.bodyStartHtml;
-        bodyEndEnabledEl.checked = normalized.bodyEndEnabled;
-        bodyEndCodeEl.value = normalized.bodyEndHtml;
-      }
-
-      function collectFormSettings() {
-        return normalizeTagSettings({
-          headEnabled: headEnabledEl.checked,
-          headHtml: headCodeEl.value,
-          bodyStartEnabled: bodyStartEnabledEl.checked,
-          bodyStartHtml: bodyStartCodeEl.value,
-          bodyEndEnabled: bodyEndEnabledEl.checked,
-          bodyEndHtml: bodyEndCodeEl.value
-        });
-      }
-
-      function openEditor() {
-        overlay.hidden = false;
-        overlay.classList.add('open');
-        openBtn.setAttribute('aria-expanded', 'true');
-      }
-
-      function closeEditor() {
-        overlay.classList.remove('open');
-        overlay.hidden = true;
-        openBtn.setAttribute('aria-expanded', 'false');
-      }
-
-      openBtn.addEventListener('click', openEditor);
-      closeBtn.addEventListener('click', closeEditor);
-      overlay.addEventListener('click', (event) => {
-        if (event.target === overlay) closeEditor();
-      });
-
-      saveBtn.addEventListener('click', () => {
-        try {
-          const nextSettings = collectFormSettings();
-          saveTagSettings(nextSettings);
-          applyTagSettings(nextSettings, { applyHead: true, applyBodyStart: true, applyBodyEnd: true });
-          window.__lunaTagInjectionSettings = nextSettings;
-          setStatus('保存して適用しました。初回計測を厳密にしたい場合は再読み込みしてください。', false);
-        } catch (error) {
-          setStatus('保存または適用に失敗しました。入力内容を確認してください。', true);
+      if (slot === 'bodyStart') {
+        for (let i = nodes.length - 1; i >= 0; i -= 1) {
+          document.body.insertBefore(nodes[i], document.body.firstChild);
         }
-      });
+        return;
+      }
 
-      clearBtn.addEventListener('click', () => {
-        const shouldClear = window.confirm('保存済みのタグ設定を削除しますか？');
-        if (!shouldClear) return;
-        localStorage.removeItem(TAG_SETTINGS_STORAGE_KEY);
-        const defaults = getDefaultTagSettings();
-        syncForm(defaults);
-        applyTagSettings(defaults, { applyHead: true, applyBodyStart: true, applyBodyEnd: true });
-        window.__lunaTagInjectionSettings = defaults;
-        setStatus('保存設定をクリアしました。', false);
-      });
-
-      presetGa4Btn.addEventListener('click', () => {
-        headEnabledEl.checked = true;
-        headCodeEl.value = "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX\"><\\/script>\n<script>\nwindow.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-XXXXXXXXXX');\n<\\/script>";
-        setStatus('GA4テンプレートをセットしました。IDを差し替えて保存してください。', false);
-      });
-
-      presetGtmBtn.addEventListener('click', () => {
-        headEnabledEl.checked = true;
-        bodyStartEnabledEl.checked = true;
-        headCodeEl.value = "<script>\n(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-XXXXXXX');\n<\\/script>";
-        bodyStartCodeEl.value = "<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>";
-        setStatus('GTMテンプレートをセットしました。IDを差し替えて保存してください。', false);
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && overlay.classList.contains('open')) {
-          closeEditor();
-          return;
-        }
-        if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 't') {
-          event.preventDefault();
-          openEditor();
-        }
-      });
-
-      syncForm(initialTagSettings);
+      nodes.forEach((node) => document.body.appendChild(node));
     }
 
-    initTagEditor();
+    function applyTrackingTags() {
+      const settings = loadTrackingSettings();
+      applyTrackingSlot('head', settings.headTags);
+      applyTrackingSlot('bodyStart', settings.bodyStartTags);
+      applyTrackingSlot('bodyEnd', settings.bodyEndTags);
+    }
+
+    applyTrackingTags();
 
     // ---- Starfield Generator (multi-type) ----
     function createStarfield(containerId, count) {

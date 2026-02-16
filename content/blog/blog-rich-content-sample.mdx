@@ -1,0 +1,58 @@
+---
+title: "入稿サンプル：画像・動画・リンクを使った記事の作り方"
+description: "非エンジニア向けに、Markdownで画像・動画・アンカーテキストリンクを入れる方法を実例で紹介。"
+date: "2026-02-17"
+updated: "2026-02-17"
+category: "guide"
+tags: ["入稿ガイド", "Markdown", "動画埋め込み", "画像挿入"]
+image: "/blog/images/sample-calendar.webp"
+slug: "blog-rich-content-sample"
+---
+
+## このサンプルで確認できること
+
+この記事では、次の3つを実際に表示します。
+
+- 画像の表示
+- 動画の埋め込み表示
+- アンカーテキストリンク
+
+### 目次リンクの動作
+
+このページの目次から、`H2` と `H3` へページ内ジャンプできます。
+
+## 1. 画像を入れる
+
+画像は次のように書きます。
+
+![開運カレンダー画面サンプル](/blog/images/sample-calendar.webp)
+
+`![]()` の中で、`[]` は画像説明、`()` は画像パスです。
+
+## 2. 動画を埋め込む
+
+動画は次の「videoコードブロック」で書きます。
+
+```video
+https://www.youtube.com/watch?v=M7lc1UVf-VE
+```
+
+YouTubeまたはVimeoのURLを1行で入れると、記事内にプレイヤー表示されます。
+
+### 動画の注意点
+
+- URLは `https://` で始める
+- 1ブロックに1URLだけ入れる
+- 見出し直下に置くと読みやすい
+
+## 3. アンカーテキストリンクを入れる
+
+内部リンク（このサイト内）:
+
+- [吉日の活かし方の記事を見る](/blog/lucky-day-calendar-basics)
+
+外部リンク（別サイト）:
+
+- [Googleアナリティクス公式ヘルプを見る](https://support.google.com/analytics/answer/1008080?hl=ja)
+
+文章中でも、たとえば[新月ルーティンの解説ページ](/blog/new-moon-manifest-guide)のように自然に差し込めます。

@@ -38,15 +38,23 @@ export default async function BlogIndexPage({ searchParams }: Props) {
   const paginated = paginatePosts(posts, page);
 
   return (
-    <section className="space-y-6">
-      <h1 className="text-3xl font-bold">ブログ</h1>
-      <p className="text-[#B8B3C4]">開運・暦・タロットに関する記事を掲載しています。</p>
+    <section className="luna-blog-shell space-y-8">
+      <header className="luna-blog-card space-y-3">
+        <p className="text-xs tracking-[0.28em] text-[#C8A87C]/85">MOONLIGHT BLOG</p>
+        <h1 className="text-3xl font-bold leading-tight text-[#F5F3F0] md:text-4xl">
+          ブログ
+        </h1>
+        <p className="max-w-3xl text-base leading-8 text-[#D9D5E5]">
+          開運・暦・タロットの知識を、日々の判断に使える形でまとめています。
+        </p>
+      </header>
+
       <div className="flex flex-wrap gap-2">
         {categories.map((category) => (
           <Link
             key={category}
             href={`/blog/category/${category}`}
-            className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-[#B8B3C4] hover:border-[#C8A87C]/40 hover:text-[#E8E4F0]"
+            className="luna-chip"
           >
             {BLOG_CATEGORY_LABELS[category]}
           </Link>
@@ -54,35 +62,40 @@ export default async function BlogIndexPage({ searchParams }: Props) {
       </div>
 
       {posts.length === 0 ? (
-        <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-[#B8B3C4]">
+        <div className="luna-blog-card text-sm text-[#B8B3C4]">
           まだ記事がありません。`content/blog/` に `.mdx` を追加すると表示されます。
         </div>
       ) : (
         <>
-          <ul className="grid gap-4 md:grid-cols-2">
+          <ul className="grid gap-5 md:grid-cols-2">
             {paginated.posts.map((post) => (
-              <li key={post.slug} className="rounded-lg border border-white/10 bg-white/5 p-4">
-                <p className="mb-1 text-xs uppercase tracking-wide text-[#C8A87C]">
+              <li
+                key={post.slug}
+                className="luna-blog-card transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <p className="mb-2 text-xs uppercase tracking-wide text-[#C8A87C]">
                   {BLOG_CATEGORY_LABELS[post.category]}
                 </p>
-                <h2 className="mb-2 text-xl font-semibold">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                <h2 className="mb-3 text-xl font-semibold leading-8 text-[#F5F3F0]">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-[#E5C44B]">
+                    {post.title}
+                  </Link>
                 </h2>
-                <p className="text-sm text-[#B8B3C4]">{post.description}</p>
-                <p className="mt-3 text-xs text-[#B8B3C4]">
+                <p className="text-sm leading-7 text-[#D0CADF]">{post.description}</p>
+                <p className="mt-4 text-xs text-[#AFA8BE]">
                   公開日: {post.date} / 更新日: {post.updated}
                 </p>
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-[#B8B3C4]">
+          <div className="luna-blog-card flex flex-wrap items-center justify-between gap-3 text-sm text-[#C4BED2]">
             <p>
               {paginated.totalItems}件中 {(paginated.page - 1) * BLOG_PAGE_SIZE + 1}-
               {Math.min(paginated.page * BLOG_PAGE_SIZE, paginated.totalItems)}件を表示
             </p>
             <div className="flex items-center gap-3">
               {paginated.page > 1 ? (
-                <Link href={getPaginationLink(paginated.page - 1)} className="text-[#C8A87C]">
+                <Link href={getPaginationLink(paginated.page - 1)} className="text-[#C8A87C] hover:text-[#E5C44B]">
                   ← 前へ
                 </Link>
               ) : (
@@ -92,7 +105,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
                 {paginated.page} / {paginated.totalPages}
               </span>
               {paginated.page < paginated.totalPages ? (
-                <Link href={getPaginationLink(paginated.page + 1)} className="text-[#C8A87C]">
+                <Link href={getPaginationLink(paginated.page + 1)} className="text-[#C8A87C] hover:text-[#E5C44B]">
                   次へ →
                 </Link>
               ) : (

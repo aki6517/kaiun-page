@@ -61,34 +61,50 @@ export default async function BlogCategoryPage({ params, searchParams }: Props) 
   const paginated = paginatePosts(getPostsByCategory(category), page);
 
   return (
-    <section className="space-y-6">
-      <Link href="/blog" className="text-sm text-[#C8A87C]">
-        ← ブログ一覧へ戻る
-      </Link>
-      <h1 className="text-3xl font-bold">カテゴリ: {BLOG_CATEGORY_LABELS[category]}</h1>
-      <p className="text-[#B8B3C4]">{BLOG_CATEGORY_DESCRIPTIONS[category]}</p>
+    <section className="luna-blog-shell space-y-8">
+      <header className="luna-blog-card space-y-3">
+        <Link href="/blog" className="inline-block text-sm text-[#C8A87C] hover:text-[#E5C44B]">
+          ← ブログ一覧へ戻る
+        </Link>
+        <p className="text-xs tracking-[0.28em] text-[#C8A87C]/85">CATEGORY</p>
+        <h1 className="text-3xl font-bold leading-tight text-[#F5F3F0] md:text-4xl">
+          {BLOG_CATEGORY_LABELS[category]}
+        </h1>
+        <p className="max-w-3xl text-base leading-8 text-[#D9D5E5]">
+          {BLOG_CATEGORY_DESCRIPTIONS[category]}
+        </p>
+      </header>
+
       {paginated.totalItems === 0 ? (
-        <p className="text-[#B8B3C4]">このカテゴリの記事はまだありません。</p>
+        <p className="luna-blog-card text-[#B8B3C4]">このカテゴリの記事はまだありません。</p>
       ) : (
         <>
-          <ul className="grid gap-4 md:grid-cols-2">
+          <ul className="grid gap-5 md:grid-cols-2">
             {paginated.posts.map((post) => (
-              <li key={post.slug} className="rounded-lg border border-white/10 bg-white/5 p-4">
-                <h2 className="mb-1 text-xl font-semibold">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+              <li
+                key={post.slug}
+                className="luna-blog-card transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <h2 className="mb-2 text-xl font-semibold leading-8 text-[#F5F3F0]">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-[#E5C44B]">
+                    {post.title}
+                  </Link>
                 </h2>
-                <p className="text-sm text-[#B8B3C4]">{post.description}</p>
+                <p className="text-sm leading-7 text-[#D0CADF]">{post.description}</p>
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-[#B8B3C4]">
+          <div className="luna-blog-card flex flex-wrap items-center justify-between gap-3 text-sm text-[#C4BED2]">
             <p>
               {paginated.totalItems}件中 {(paginated.page - 1) * BLOG_PAGE_SIZE + 1}-
               {Math.min(paginated.page * BLOG_PAGE_SIZE, paginated.totalItems)}件を表示
             </p>
             <div className="flex items-center gap-3">
               {paginated.page > 1 ? (
-                <Link href={getPaginationLink(category, paginated.page - 1)} className="text-[#C8A87C]">
+                <Link
+                  href={getPaginationLink(category, paginated.page - 1)}
+                  className="text-[#C8A87C] hover:text-[#E5C44B]"
+                >
                   ← 前へ
                 </Link>
               ) : (
@@ -98,7 +114,10 @@ export default async function BlogCategoryPage({ params, searchParams }: Props) 
                 {paginated.page} / {paginated.totalPages}
               </span>
               {paginated.page < paginated.totalPages ? (
-                <Link href={getPaginationLink(category, paginated.page + 1)} className="text-[#C8A87C]">
+                <Link
+                  href={getPaginationLink(category, paginated.page + 1)}
+                  className="text-[#C8A87C] hover:text-[#E5C44B]"
+                >
                   次へ →
                 </Link>
               ) : (
