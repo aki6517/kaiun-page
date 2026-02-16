@@ -15,3 +15,5 @@ skills/
 tarot_cards/
 開発テンプレート/
 アプリ画面_*
+.vercel
+.env*.local

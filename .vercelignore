@@ -1,0 +1,12 @@
+.git
+.github
+.next
+node_modules
+coverage
+dist
+out
+skills
+tarot_cards
+開発テンプレート
+*.png
+*.jpg
