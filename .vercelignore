@@ -5,8 +5,7 @@ node_modules
 coverage
 dist
 out
-skills
-tarot_cards
-開発テンプレート
-*.png
-*.jpg
+/skills
+/tarot_cards
+/開発テンプレート
+/アプリ画面_*
