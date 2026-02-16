@@ -9,6 +9,7 @@ import {
   parsePageParam
 } from "@/lib/blog";
 import { getSiteUrl } from "@/lib/site";
+import { createBlogJsonLd, createBreadcrumbListJsonLd } from "@/lib/structured-data";
 
 type Props = {
   searchParams: Promise<{ page?: string }>;
@@ -36,9 +37,28 @@ export default async function BlogIndexPage({ searchParams }: Props) {
   const posts = getAllPosts();
   const categories = getAllCategories();
   const paginated = paginatePosts(posts, page);
+  const siteUrl = getSiteUrl();
+  const currentUrl = paginated.page > 1 ? `${siteUrl}/blog?page=${paginated.page}` : `${siteUrl}/blog`;
+  const blogJsonLd = createBlogJsonLd({
+    name: "開運ルナカレンダー ブログ",
+    description: "開運・暦・タロットの知識を、日々の判断に使える形でまとめた記事一覧。",
+    url: currentUrl
+  });
+  const breadcrumbJsonLd = createBreadcrumbListJsonLd([
+    { name: "ホーム", url: siteUrl },
+    { name: "ブログ", url: `${siteUrl}/blog` }
+  ]);
 
   return (
     <section className="luna-blog-shell space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="luna-blog-card space-y-3">
         <p className="text-xs tracking-[0.28em] text-[#C8A87C]/85">MOONLIGHT BLOG</p>
         <h1 className="text-3xl font-bold leading-tight text-[#F5F3F0] md:text-4xl">

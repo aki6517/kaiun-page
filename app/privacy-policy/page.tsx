@@ -1,12 +1,38 @@
 import type { Metadata } from "next";
+import { getSiteUrl } from "@/lib/site";
+import { createBreadcrumbListJsonLd, createWebPageJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー"
+  title: "プライバシーポリシー",
+  description: "開運ルナカレンダーの個人情報保護方針と計測ツール利用に関するポリシーです。",
+  alternates: {
+    canonical: `${getSiteUrl()}/privacy-policy`
+  }
 };
 
 export default function PrivacyPolicyPage() {
+  const siteUrl = getSiteUrl();
+  const pageUrl = `${siteUrl}/privacy-policy`;
+  const webPageJsonLd = createWebPageJsonLd({
+    name: "プライバシーポリシー",
+    description: "開運ルナカレンダーの個人情報保護方針",
+    url: pageUrl
+  });
+  const breadcrumbJsonLd = createBreadcrumbListJsonLd([
+    { name: "ホーム", url: siteUrl },
+    { name: "プライバシーポリシー", url: pageUrl }
+  ]);
+
   return (
     <article className="prose prose-invert max-w-none">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <h1>プライバシーポリシー</h1>
       <p>
         開運ルナカレンダー（以下「本サービス」）は、利用者のプライバシーを尊重し、

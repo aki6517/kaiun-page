@@ -12,6 +12,7 @@ import {
   type BlogCategory
 } from "@/lib/blog";
 import { getSiteUrl } from "@/lib/site";
+import { createBreadcrumbListJsonLd, createWebPageJsonLd } from "@/lib/structured-data";
 
 type Props = {
   params: Promise<{ category: string }>;
@@ -59,9 +60,31 @@ export default async function BlogCategoryPage({ params, searchParams }: Props) 
   }
 
   const paginated = paginatePosts(getPostsByCategory(category), page);
+  const siteUrl = getSiteUrl();
+  const baseCategoryUrl = `${siteUrl}/blog/category/${category}`;
+  const currentCategoryUrl = paginated.page > 1 ? `${baseCategoryUrl}?page=${paginated.page}` : baseCategoryUrl;
+  const categoryLabel = BLOG_CATEGORY_LABELS[category];
+  const webPageJsonLd = createWebPageJsonLd({
+    name: `カテゴリ: ${categoryLabel}`,
+    description: BLOG_CATEGORY_DESCRIPTIONS[category],
+    url: currentCategoryUrl
+  });
+  const breadcrumbJsonLd = createBreadcrumbListJsonLd([
+    { name: "ホーム", url: siteUrl },
+    { name: "ブログ", url: `${siteUrl}/blog` },
+    { name: categoryLabel, url: baseCategoryUrl }
+  ]);
 
   return (
     <section className="luna-blog-shell space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="luna-blog-card space-y-3">
         <Link href="/blog" className="inline-block text-sm text-[#C8A87C] hover:text-[#E5C44B]">
           ← ブログ一覧へ戻る

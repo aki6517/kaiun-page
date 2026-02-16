@@ -14,6 +14,7 @@ import {
   slugifyHeading
 } from "@/lib/blog";
 import { getSiteUrl } from "@/lib/site";
+import { createBreadcrumbListJsonLd } from "@/lib/structured-data";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -100,6 +101,7 @@ export default async function BlogDetailPage({ params }: Props) {
   const tableOfContents = extractHeadings(post.body);
   const relatedPosts = getRelatedPosts(post, 3);
   const headingIdState = new Map<string, number>();
+  const categoryUrl = `${siteUrl}/blog/category/${post.category}`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -115,8 +117,15 @@ export default async function BlogDetailPage({ params }: Props) {
       "@type": "Organization",
       name: "開運ルナカレンダー"
     },
+    image: post.image ? `${siteUrl}${post.image.startsWith("/") ? post.image : `/${post.image}`}` : undefined,
     mainEntityOfPage: url
   };
+  const breadcrumbJsonLd = createBreadcrumbListJsonLd([
+    { name: "ホーム", url: siteUrl },
+    { name: "ブログ", url: `${siteUrl}/blog` },
+    { name: BLOG_CATEGORY_LABELS[post.category], url: categoryUrl },
+    { name: post.title, url }
+  ]);
 
   const resolveHeadingId = (headingText: string) => {
     const baseId = slugifyHeading(headingText);
@@ -128,6 +137,10 @@ export default async function BlogDetailPage({ params }: Props) {
   return (
     <article className="luna-blog-shell space-y-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="luna-blog-card space-y-3">
         <Link href="/blog" className="inline-block text-sm text-[#C8A87C] hover:text-[#E5C44B]">
           ← ブログ一覧へ戻る
