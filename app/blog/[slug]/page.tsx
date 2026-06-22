@@ -142,26 +142,26 @@ export default async function BlogDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <header className="luna-blog-card space-y-3">
-        <Link href="/blog" className="inline-block text-sm text-[#C8A87C] hover:text-[#E5C44B]">
+        <Link href="/blog" className="inline-block text-sm text-[#E8D9C3] hover:text-[#F2E9DA]">
           ← ブログ一覧へ戻る
         </Link>
-        <p className="text-xs uppercase tracking-wide text-[#C8A87C]">
+        <p className="text-xs uppercase tracking-wide text-[#E8D9C3]">
           {BLOG_CATEGORY_LABELS[post.category]}
         </p>
-        <h1 className="text-3xl font-bold leading-tight text-[#F5F3F0] md:text-4xl">{post.title}</h1>
-        <p className="text-base leading-8 text-[#D9D5E5]">{post.description}</p>
-        <p className="text-xs text-[#AFA8BE]">
+        <h1 className="text-3xl font-bold leading-tight text-[#F7F1E8] md:text-4xl">{post.title}</h1>
+        <p className="text-base leading-8 text-[#E8DAD6]">{post.description}</p>
+        <p className="text-xs text-[#C7B0B0]">
           公開日: {post.date} / 更新日: {post.updated}
         </p>
       </header>
 
       {tableOfContents.length > 0 ? (
         <aside className="luna-blog-card">
-          <p className="text-sm font-semibold text-[#E8E4F0]">目次（H2 / H3）</p>
-          <ul className="mt-3 space-y-2 text-sm leading-7 text-[#B8B3C4]">
+          <p className="text-sm font-semibold text-[#F7F1E8]">目次（H2 / H3）</p>
+          <ul className="mt-3 space-y-2 text-sm leading-7 text-[#C7B0B0]">
             {tableOfContents.map((heading) => (
-              <li key={heading.id} className={heading.level === 3 ? "pl-5 text-[#AFA8BE]" : ""}>
-                <a href={`#${heading.id}`} className="hover:text-[#E8E4F0] hover:underline">
+              <li key={heading.id} className={heading.level === 3 ? "pl-5 text-[#C7B0B0]" : ""}>
+                <a href={`#${heading.id}`} className="hover:text-[#F7F1E8] hover:underline">
                   {heading.text}
                 </a>
               </li>
@@ -178,7 +178,7 @@ export default async function BlogDetailPage({ params }: Props) {
               const text = getTextFromNode(children);
               const id = resolveHeadingId(text);
               return (
-                <h2 id={id} className="mt-12 scroll-mt-28 text-2xl font-bold leading-relaxed text-[#F5F3F0]">
+                <h2 id={id} className="mt-12 scroll-mt-28 text-2xl font-bold leading-relaxed text-[#F7F1E8]">
                   {children}
                 </h2>
               );
@@ -187,12 +187,12 @@ export default async function BlogDetailPage({ params }: Props) {
               const text = getTextFromNode(children);
               const id = resolveHeadingId(text);
               return (
-                <h3 id={id} className="mt-10 scroll-mt-28 text-xl font-semibold leading-relaxed text-[#E8E4F0]">
+                <h3 id={id} className="mt-10 scroll-mt-28 text-xl font-semibold leading-relaxed text-[#F7F1E8]">
                   {children}
                 </h3>
               );
             },
-            p: ({ children }) => <p className="mt-5 text-[1.03rem] leading-[2.05] text-[#E8E4F0]">{children}</p>,
+            p: ({ children }) => <p className="mt-5 text-[1.03rem] leading-[2.05] text-[#F7F1E8]">{children}</p>,
             ul: ({ children }) => <ul className="mt-5 list-disc space-y-2 pl-6 text-[1.01rem] leading-[2.0]">{children}</ul>,
             ol: ({ children }) => <ol className="mt-5 list-decimal space-y-2 pl-6 text-[1.01rem] leading-[2.0]">{children}</ol>,
             a: ({ href, children }) => (
@@ -200,7 +200,7 @@ export default async function BlogDetailPage({ params }: Props) {
                 href={href}
                 target={href && isExternalLink(href) ? "_blank" : undefined}
                 rel={href && isExternalLink(href) ? "noopener noreferrer" : undefined}
-                className="text-[#E5C44B] underline underline-offset-4 hover:text-[#F6DB7B]"
+                className="text-[#F2E9DA] underline underline-offset-4 hover:text-[#F2E9DA]"
               >
                 {children}
               </a>
@@ -208,19 +208,19 @@ export default async function BlogDetailPage({ params }: Props) {
             img: ({ src, alt }) => {
               if (!src) return null;
               return (
-                <figure className="my-8 overflow-hidden rounded-2xl border border-[#C8A87C]/30 bg-[#120F1F] p-3">
+                <figure className="my-8 overflow-hidden rounded-2xl border border-[#E8D9C3]/30 bg-[#241D21] p-3">
                   <img
                     src={src}
                     alt={alt ?? ""}
                     loading="lazy"
                     className="w-full rounded-xl object-cover shadow-[0_12px_40px_rgba(5,4,12,0.55)]"
                   />
-                  {alt ? <figcaption className="mt-3 text-sm text-[#B8B3C4]">{alt}</figcaption> : null}
+                  {alt ? <figcaption className="mt-3 text-sm text-[#C7B0B0]">{alt}</figcaption> : null}
                 </figure>
               );
             },
             blockquote: ({ children }) => (
-              <blockquote className="mt-6 rounded-r-xl border-l-2 border-[#C8A87C]/50 bg-[#151126] px-4 py-3 italic text-[#D1CCDF]">
+              <blockquote className="mt-6 rounded-r-xl border-l-2 border-[#E8D9C3]/50 bg-[#2A2226] px-4 py-3 italic text-[#E0CFCB]">
                 {children}
               </blockquote>
             ),
@@ -237,7 +237,7 @@ export default async function BlogDetailPage({ params }: Props) {
                 }
 
                 return (
-                  <div className="my-8 overflow-hidden rounded-2xl border border-[#C8A87C]/30 bg-[#100D1C] p-3">
+                  <div className="my-8 overflow-hidden rounded-2xl border border-[#E8D9C3]/30 bg-[#211A1E] p-3">
                     <div className="relative w-full overflow-hidden rounded-xl pt-[56.25%]">
                       <iframe
                         src={embedUrl}
@@ -255,13 +255,13 @@ export default async function BlogDetailPage({ params }: Props) {
 
               if (className) {
                 return (
-                  <pre className="mt-6 overflow-x-auto rounded-xl border border-white/10 bg-[#120F1F] p-4 text-sm text-[#E8E4F0]">
+                  <pre className="mt-6 overflow-x-auto rounded-xl border border-white/10 bg-[#241D21] p-4 text-sm text-[#F7F1E8]">
                     <code className={className}>{children}</code>
                   </pre>
                 );
               }
 
-              return <code className="rounded bg-[#19142A] px-1.5 py-0.5 text-sm text-[#E8E4F0]">{children}</code>;
+              return <code className="rounded bg-[#3A3035] px-1.5 py-0.5 text-sm text-[#F7F1E8]">{children}</code>;
             }
           }}
         >
@@ -270,13 +270,13 @@ export default async function BlogDetailPage({ params }: Props) {
       </div>
 
       <section className="luna-blog-card">
-        <p className="text-sm font-semibold text-[#E8E4F0]">この記事をシェア</p>
-        <div className="mt-2 flex flex-wrap gap-3 text-sm text-[#C8A87C]">
+        <p className="text-sm font-semibold text-[#F7F1E8]">この記事をシェア</p>
+        <div className="mt-2 flex flex-wrap gap-3 text-sm text-[#E8D9C3]">
           <a
             href={`https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#E5C44B]"
+            className="hover:text-[#F2E9DA]"
           >
             Xでシェア
           </a>
@@ -284,7 +284,7 @@ export default async function BlogDetailPage({ params }: Props) {
             href={`https://social-plugins.line.me/lineit/share?url=${encodedUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#E5C44B]"
+            className="hover:text-[#F2E9DA]"
           >
             LINEでシェア
           </a>
@@ -293,13 +293,13 @@ export default async function BlogDetailPage({ params }: Props) {
 
       {relatedPosts.length > 0 ? (
         <section className="space-y-3">
-          <h2 className="text-2xl font-bold text-[#F5F3F0]">関連記事</h2>
+          <h2 className="text-2xl font-bold text-[#F7F1E8]">関連記事</h2>
           <ul className="grid gap-4 md:grid-cols-3">
             {relatedPosts.map((relatedPost) => (
               <li key={relatedPost.slug} className="luna-blog-card">
-                <p className="mb-1 text-xs text-[#C8A87C]">{BLOG_CATEGORY_LABELS[relatedPost.category]}</p>
+                <p className="mb-1 text-xs text-[#E8D9C3]">{BLOG_CATEGORY_LABELS[relatedPost.category]}</p>
                 <h3 className="text-base font-semibold">
-                  <Link href={`/blog/${relatedPost.slug}`} className="hover:text-[#E5C44B]">
+                  <Link href={`/blog/${relatedPost.slug}`} className="hover:text-[#F2E9DA]">
                     {relatedPost.title}
                   </Link>
                 </h3>

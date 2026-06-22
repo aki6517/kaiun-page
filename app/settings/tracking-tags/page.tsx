@@ -19,11 +19,11 @@ export default function TrackingTagsSettingsPage() {
   return (
     <section className="space-y-6">
       <div className="space-y-3">
-        <Link href="/" className="text-sm text-[#C8A87C]">
+        <Link href="/" className="text-sm text-[#E8D9C3]">
           ← ホームへ戻る
         </Link>
         <h1 className="text-3xl font-bold">計測タグ設定</h1>
-        <p className="text-[#B8B3C4]">
+        <p className="text-[#C7B0B0]">
           Google AnalyticsやGTMのタグを、head / body 開始 / body終了に設定できます。
         </p>
       </div>

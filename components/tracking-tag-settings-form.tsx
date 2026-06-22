@@ -53,7 +53,7 @@ export function TrackingTagSettingsForm() {
 
   if (!isReady) {
     return (
-      <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-sm text-[#B8B3C4]">
+      <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-sm text-[#C7B0B0]">
         設定を読み込み中です...
       </div>
     );
@@ -98,8 +98,8 @@ export function TrackingTagSettingsForm() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-[#B8B3C4]">
-        <p className="font-semibold text-[#E8E4F0]">使い方</p>
+      <section className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-[#C7B0B0]">
+        <p className="font-semibold text-[#F7F1E8]">使い方</p>
         <ol className="mt-2 list-decimal space-y-1 pl-5">
           <li>GA4/GTMのIDを入れてテンプレート作成、またはタグを直接貼り付ける</li>
           <li>「このブラウザに保存」で即時反映する</li>
@@ -109,7 +109,7 @@ export function TrackingTagSettingsForm() {
 
       <section className="grid gap-4 rounded-xl border border-white/10 bg-white/5 p-5 md:grid-cols-2">
         <div className="space-y-3">
-          <label className="text-sm text-[#B8B3C4]" htmlFor="ga4-id">
+          <label className="text-sm text-[#C7B0B0]" htmlFor="ga4-id">
             GA4 Measurement ID
           </label>
           <input
@@ -117,18 +117,18 @@ export function TrackingTagSettingsForm() {
             value={ga4Id}
             onChange={(event) => setGa4Id(event.target.value)}
             placeholder="G-XXXXXXXXXX"
-            className="w-full rounded-lg border border-white/15 bg-[#141122] px-3 py-2 text-sm text-[#E8E4F0] outline-none focus:border-[#C8A87C]"
+            className="w-full rounded-lg border border-white/15 bg-[#3A3035] px-3 py-2 text-sm text-[#F7F1E8] outline-none focus:border-[#E8D9C3]"
           />
           <button
             type="button"
             onClick={onPresetGa4}
-            className="rounded-full border border-[#C8A87C]/40 bg-[#C8A87C]/15 px-4 py-2 text-sm text-[#E8E4F0]"
+            className="rounded-full border border-[#E8D9C3]/40 bg-[#E8D9C3]/15 px-4 py-2 text-sm text-[#F7F1E8]"
           >
             GA4テンプレート適用
           </button>
         </div>
         <div className="space-y-3">
-          <label className="text-sm text-[#B8B3C4]" htmlFor="gtm-id">
+          <label className="text-sm text-[#C7B0B0]" htmlFor="gtm-id">
             GTM Container ID
           </label>
           <input
@@ -136,12 +136,12 @@ export function TrackingTagSettingsForm() {
             value={gtmId}
             onChange={(event) => setGtmId(event.target.value)}
             placeholder="GTM-XXXXXXX"
-            className="w-full rounded-lg border border-white/15 bg-[#141122] px-3 py-2 text-sm text-[#E8E4F0] outline-none focus:border-[#C8A87C]"
+            className="w-full rounded-lg border border-white/15 bg-[#3A3035] px-3 py-2 text-sm text-[#F7F1E8] outline-none focus:border-[#E8D9C3]"
           />
           <button
             type="button"
             onClick={onPresetGtm}
-            className="rounded-full border border-[#C8A87C]/40 bg-[#C8A87C]/15 px-4 py-2 text-sm text-[#E8E4F0]"
+            className="rounded-full border border-[#E8D9C3]/40 bg-[#E8D9C3]/15 px-4 py-2 text-sm text-[#F7F1E8]"
           >
             GTMテンプレート適用
           </button>
@@ -149,34 +149,34 @@ export function TrackingTagSettingsForm() {
       </section>
 
       <section className="space-y-4 rounded-xl border border-white/10 bg-white/5 p-5">
-        <label className="flex flex-col gap-2 text-sm text-[#B8B3C4]" htmlFor="head-tags">
-          <span className="font-medium text-[#E8E4F0]">headタグ挿入用</span>
+        <label className="flex flex-col gap-2 text-sm text-[#C7B0B0]" htmlFor="head-tags">
+          <span className="font-medium text-[#F7F1E8]">headタグ挿入用</span>
           <textarea
             id="head-tags"
             rows={10}
             value={headTags}
             onChange={(event) => setHeadTags(event.target.value)}
-            className="w-full rounded-lg border border-white/15 bg-[#141122] px-3 py-3 font-mono text-xs text-[#E8E4F0] outline-none focus:border-[#C8A87C]"
+            className="w-full rounded-lg border border-white/15 bg-[#3A3035] px-3 py-3 font-mono text-xs text-[#F7F1E8] outline-none focus:border-[#E8D9C3]"
           />
         </label>
-        <label className="flex flex-col gap-2 text-sm text-[#B8B3C4]" htmlFor="body-start-tags">
-          <span className="font-medium text-[#E8E4F0]">body開始直後に挿入</span>
+        <label className="flex flex-col gap-2 text-sm text-[#C7B0B0]" htmlFor="body-start-tags">
+          <span className="font-medium text-[#F7F1E8]">body開始直後に挿入</span>
           <textarea
             id="body-start-tags"
             rows={8}
             value={bodyStartTags}
             onChange={(event) => setBodyStartTags(event.target.value)}
-            className="w-full rounded-lg border border-white/15 bg-[#141122] px-3 py-3 font-mono text-xs text-[#E8E4F0] outline-none focus:border-[#C8A87C]"
+            className="w-full rounded-lg border border-white/15 bg-[#3A3035] px-3 py-3 font-mono text-xs text-[#F7F1E8] outline-none focus:border-[#E8D9C3]"
           />
         </label>
-        <label className="flex flex-col gap-2 text-sm text-[#B8B3C4]" htmlFor="body-end-tags">
-          <span className="font-medium text-[#E8E4F0]">body閉じタグ直前に挿入</span>
+        <label className="flex flex-col gap-2 text-sm text-[#C7B0B0]" htmlFor="body-end-tags">
+          <span className="font-medium text-[#F7F1E8]">body閉じタグ直前に挿入</span>
           <textarea
             id="body-end-tags"
             rows={8}
             value={bodyEndTags}
             onChange={(event) => setBodyEndTags(event.target.value)}
-            className="w-full rounded-lg border border-white/15 bg-[#141122] px-3 py-3 font-mono text-xs text-[#E8E4F0] outline-none focus:border-[#C8A87C]"
+            className="w-full rounded-lg border border-white/15 bg-[#3A3035] px-3 py-3 font-mono text-xs text-[#F7F1E8] outline-none focus:border-[#E8D9C3]"
           />
         </label>
 
@@ -184,24 +184,24 @@ export function TrackingTagSettingsForm() {
           <button
             type="button"
             onClick={onSave}
-            className="rounded-full border border-[#C8A87C]/40 bg-[#C8A87C]/15 px-5 py-2 text-sm text-[#E8E4F0]"
+            className="rounded-full border border-[#E8D9C3]/40 bg-[#E8D9C3]/15 px-5 py-2 text-sm text-[#F7F1E8]"
           >
             このブラウザに保存
           </button>
           <button
             type="button"
             onClick={onClear}
-            className="rounded-full border border-white/20 px-5 py-2 text-sm text-[#B8B3C4]"
+            className="rounded-full border border-white/20 px-5 py-2 text-sm text-[#C7B0B0]"
           >
             ローカル設定を削除
           </button>
         </div>
-        {message ? <p className="text-sm text-[#C8A87C]">{message}</p> : null}
+        {message ? <p className="text-sm text-[#E8D9C3]">{message}</p> : null}
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-[#B8B3C4]">
-        <p className="font-semibold text-[#E8E4F0]">本番共通で使う環境変数（Vercel）</p>
-        <pre className="mt-3 overflow-x-auto rounded-lg border border-white/15 bg-[#141122] p-3 font-mono text-xs text-[#E8E4F0]">
+      <section className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-[#C7B0B0]">
+        <p className="font-semibold text-[#F7F1E8]">本番共通で使う環境変数（Vercel）</p>
+        <pre className="mt-3 overflow-x-auto rounded-lg border border-white/15 bg-[#3A3035] p-3 font-mono text-xs text-[#F7F1E8]">
 {`NEXT_PUBLIC_TRACKING_HEAD_TAGS="<script>...</script>"
 NEXT_PUBLIC_TRACKING_BODY_START_TAGS="<noscript>...</noscript>"
 NEXT_PUBLIC_TRACKING_BODY_END_TAGS="<script>...</script>"`}
