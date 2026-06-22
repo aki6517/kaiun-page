@@ -79,7 +79,7 @@ export default function HomePage() {
         </p>
         <div className="flex flex-wrap gap-3">
           <a
-            href="https://apps.apple.com/"
+            href="https://apps.apple.com/jp/app/%E9%96%8B%E9%81%8B%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%AB%E3%83%8A/id6758544903"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-[#E8D9C3]/40 bg-[#E8D9C3]/15 px-6 py-3 text-sm font-semibold text-[#F7F1E8]"
@@ -156,7 +156,7 @@ export default function HomePage() {
         </p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
           <a
-            href="https://apps.apple.com/"
+            href="https://apps.apple.com/jp/app/%E9%96%8B%E9%81%8B%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%AB%E3%83%8A/id6758544903"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-[#E8D9C3]/40 bg-[#E8D9C3]/15 px-6 py-3 text-sm font-semibold text-[#F7F1E8]"
