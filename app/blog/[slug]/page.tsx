@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { isValidElement } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import {
   BLOG_CATEGORY_LABELS,
   extractHeadings,
@@ -173,6 +174,7 @@ export default async function BlogDetailPage({ params }: Props) {
       <div className="luna-blog-card">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             h2: ({ children }) => {
               const text = getTextFromNode(children);
@@ -220,10 +222,35 @@ export default async function BlogDetailPage({ params }: Props) {
               );
             },
             blockquote: ({ children }) => (
-              <blockquote className="mt-6 rounded-r-xl border-l-2 border-[#E8D9C3]/50 bg-[#2A2226] px-4 py-3 italic text-[#E0CFCB]">
+              <blockquote className="my-6 rounded-2xl border border-[#E8D9C3]/30 border-l-4 border-l-[#C79FA5] bg-[#2A2226] px-5 py-4 not-italic leading-[1.95] text-[#EDE3D6]">
                 {children}
               </blockquote>
             ),
+            strong: ({ children }) => <strong className="font-bold text-[#F2E9DA]">{children}</strong>,
+            em: ({ children }) => <em className="text-[#E0CFCB]">{children}</em>,
+            mark: ({ children }) => (
+              <mark className="mx-0.5 rounded bg-[#E8D9C3]/85 px-1.5 py-0.5 font-semibold text-[#2D2428] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                {children}
+              </mark>
+            ),
+            hr: () => (
+              <hr className="my-10 h-px border-0 bg-gradient-to-r from-transparent via-[#E8D9C3]/45 to-transparent" />
+            ),
+            table: ({ children }) => (
+              <div className="my-7 overflow-x-auto rounded-2xl border border-[#E8D9C3]/25 shadow-[0_10px_30px_rgba(5,4,12,0.4)]">
+                <table className="w-full border-collapse text-left text-[0.95rem]">{children}</table>
+              </div>
+            ),
+            thead: ({ children }) => <thead className="bg-[#3A3035]">{children}</thead>,
+            th: ({ children }) => (
+              <th className="whitespace-nowrap px-4 py-3 text-[0.9rem] font-semibold text-[#F2E9DA]">{children}</th>
+            ),
+            td: ({ children }) => (
+              <td className="border-t border-white/10 px-4 py-3 align-top text-[0.95rem] leading-7 text-[#EDE3D6]">
+                {children}
+              </td>
+            ),
+            tr: ({ children }) => <tr className="even:bg-[#2A2226]/50">{children}</tr>,
             code: ({ className, children }) => {
               const text = getTextFromNode(children).trim();
               if (className?.includes("language-video")) {
