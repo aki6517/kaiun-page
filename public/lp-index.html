@@ -641,20 +641,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .tarot-card-float {
       position: absolute;
-      width: clamp(90px, 12vw, 140px);
-      aspect-ratio: 58 / 100;
-      border-radius: 10px;
-      border: 1.5px solid var(--gold-dim);
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(232,217,195,0.15);
+      width: clamp(90px, 12vw, 130px);
+      aspect-ratio: 3 / 4;
+      border-radius: 14px;
+      border: 1px solid var(--gold-dim);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 20px rgba(232,217,195,0.12);
+      background: linear-gradient(155deg, rgba(183,132,140,0.2), rgba(232,217,195,0.08));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       opacity: 0;
     }
 
-    .tarot-card-float img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .tarot-card-float .ins-icon { color: var(--gold); display: flex; }
+    .tarot-card-float .ins-theme {
+      font-family: var(--font-decorative);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--gold);
     }
 
     .tarot-card-float:nth-child(1) {
@@ -1021,59 +1027,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       100% { transform: translateX(-50%); }
     }
 
+    /* ひらめきカード（アプリ実装に対応：アイコン＋テーマ＋タイトル） */
     .showcase-card {
       flex: 0 0 auto;
-      width: clamp(100px, 13vw, 140px);
-      aspect-ratio: 58 / 100;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1.5px solid rgba(232,217,195,0.15);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      width: clamp(140px, 18vw, 175px);
+      aspect-ratio: 3 / 4;
+      border-radius: 18px;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      background: linear-gradient(155deg, rgba(183,132,140,0.16), rgba(232,217,195,0.07));
+      border: 1px solid rgba(232,217,195,0.28);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
       transition: transform 0.4s var(--ease-mystical), box-shadow 0.4s, border-color 0.4s;
-      cursor: pointer;
+      cursor: default;
       position: relative;
     }
 
-    .showcase-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(45,36,40,0.6) 100%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
     .showcase-card:hover {
-      transform: translateY(-8px) scale(1.05);
-      border-color: rgba(232,217,195,0.5);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 24px rgba(232,217,195,0.15);
+      transform: translateY(-8px) scale(1.04);
+      border-color: rgba(232,217,195,0.55);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 24px rgba(232,217,195,0.15);
     }
 
-    .showcase-card:hover::after { opacity: 1; }
-
-    .showcase-card img {
-      width: 100%;
-      display: block;
-    }
-
-    .showcase-card-name {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 6px 4px;
-      text-align: center;
-      font-family: var(--font-decorative);
-      font-size: 0.55rem;
-      letter-spacing: 0.1em;
+    .showcase-card .ins-icon {
       color: var(--gold);
-      z-index: 1;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.4s, transform 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .showcase-card:hover .showcase-card-name {
-      opacity: 1;
-      transform: translateY(0);
+
+    .showcase-card .ins-theme {
+      font-family: var(--font-decorative);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+
+    .showcase-card .ins-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--luna-moonlight);
     }
 
     /* ========================================
@@ -1654,6 +1653,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <path fill="currentColor" d="M58 36l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" opacity="0.4"/>
         <path fill="currentColor" d="M70 28l0.8 2.2 2.2 0.8-2.2 0.8L70 34l-0.8-2.2-2.2-0.8 2.2-0.8z" opacity="0.3"/>
       </symbol>
+      <!-- ひらめきカード テーマアイコン（アプリ実装に対応） -->
+      <symbol id="icon-flame" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2C9.5 5.5 8 7.5 8 11a4 4 0 0 0 8 0c0-1.6-.6-2.8-1.4-4 .1 1.4-.8 2.3-1.6 2.3C14 6.8 12.4 4.6 12 2z"/>
+      </symbol>
+      <symbol id="icon-bolt" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M13 2L4 14h6l-1 8 9-12h-6z"/>
+      </symbol>
+      <symbol id="icon-magnifier" viewBox="0 0 24 24">
+        <circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="14.5" y1="14.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-paintbrush" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M15 4l5 5-8 8H8v-4z"/>
+        <path fill="currentColor" d="M5 16c1.7 0 3 1.3 3 3s-1.3 3-3 3c-1.5 0-2-1-2-2.5S3.5 16 5 16z"/>
+      </symbol>
+      <symbol id="icon-tray" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 13l3-9h12l3 9v6H3z"/>
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 13h5l1.5 2h5L21 13"/>
+      </symbol>
+      <symbol id="icon-leaf" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M5 19C3.8 12 8.5 4 20 4c1.2 9.5-4.5 15-13 15-.7 0-1.3-.1-2-.3z" opacity="0.9"/>
+        <line x1="6" y1="18" x2="16" y2="8" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+      </symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/>
+        <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-people" viewBox="0 0 24 24">
+        <circle cx="8.5" cy="8" r="3" fill="currentColor"/>
+        <circle cx="16" cy="8.5" r="2.6" fill="currentColor" opacity="0.75"/>
+        <path fill="currentColor" d="M2.5 19.5c0-3.3 2.7-6 6-6s6 2.7 6 6z"/>
+        <path fill="currentColor" opacity="0.75" d="M13.5 19.5c.3-2.6 2.2-4.5 5-4.5 3 0 4.9 2 5 4.5z"/>
+      </symbol>
     </defs>
   </svg>
 
@@ -1720,16 +1752,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </svg>
     </div>
 
-    <!-- Floating Tarot Cards with real images -->
+    <!-- Floating inspiration cards (matches app themes) -->
     <div class="hero-cards">
       <div class="tarot-card-float">
-        <img src="tarot_cards/major_arcana/18.webp" alt="The Moon" loading="lazy" fetchpriority="low" decoding="async">
+        <span class="ins-icon"><svg width="30" height="30"><use href="#icon-flame"/></svg></span>
+        <span class="ins-theme">挑戦</span>
       </div>
       <div class="tarot-card-float">
-        <img src="tarot_cards/major_arcana/17.webp" alt="The Star" loading="lazy" fetchpriority="low" decoding="async">
+        <span class="ins-icon"><svg width="30" height="30"><use href="#icon-leaf"/></svg></span>
+        <span class="ins-theme">休息</span>
       </div>
       <div class="tarot-card-float">
-        <img src="tarot_cards/major_arcana/21.webp" alt="The World" loading="lazy" fetchpriority="low" decoding="async">
+        <span class="ins-icon"><svg width="30" height="30"><use href="#icon-heart"/></svg></span>
+        <span class="ins-theme">感謝</span>
       </div>
     </div>
 
@@ -1966,96 +2001,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="section-inner">
       <p class="showcase-label reveal">Inspiration Cards</p>
       <h2 class="showcase-title reveal">毎日に寄りそう、ひらめきのカード</h2>
-      <p class="showcase-sub reveal">引いたカードが、今日の気分と行動にそっとヒントをくれます。すべてオリジナルデザイン。</p>
+      <p class="showcase-sub reveal">挑戦・休息・感謝など10のテーマから、今日のあなたに1枚。気分と行動にそっとヒントをくれます。</p>
     </div>
 
-    <!-- Major Arcana Row -->
+    <!-- ひらめきカード（10テーマ）- アプリ実装に対応 -->
     <div class="showcase-track-wrap" style="margin-bottom: 20px;">
       <div class="showcase-track" id="majorTrack">
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/0.webp" alt="愚者" loading="lazy" decoding="async"><span class="showcase-card-name">The Fool</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/1.webp" alt="魔術師" loading="lazy" decoding="async"><span class="showcase-card-name">The Magician</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/2.webp" alt="女教皇" loading="lazy" decoding="async"><span class="showcase-card-name">High Priestess</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/3.webp" alt="女帝" loading="lazy" decoding="async"><span class="showcase-card-name">The Empress</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/4.webp" alt="皇帝" loading="lazy" decoding="async"><span class="showcase-card-name">The Emperor</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/5.webp" alt="教皇" loading="lazy" decoding="async"><span class="showcase-card-name">The Hierophant</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/6.webp" alt="恋人" loading="lazy" decoding="async"><span class="showcase-card-name">The Lovers</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/7.webp" alt="戦車" loading="lazy" decoding="async"><span class="showcase-card-name">The Chariot</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/8.webp" alt="力" loading="lazy" decoding="async"><span class="showcase-card-name">Strength</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/9.webp" alt="隠者" loading="lazy" decoding="async"><span class="showcase-card-name">The Hermit</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/10.webp" alt="運命の輪" loading="lazy" decoding="async"><span class="showcase-card-name">Wheel of Fortune</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/11.webp" alt="正義" loading="lazy" decoding="async"><span class="showcase-card-name">Justice</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/12.webp" alt="吊された男" loading="lazy" decoding="async"><span class="showcase-card-name">Hanged Man</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/13.webp" alt="死神" loading="lazy" decoding="async"><span class="showcase-card-name">Death</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/14.webp" alt="節制" loading="lazy" decoding="async"><span class="showcase-card-name">Temperance</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/15.webp" alt="悪魔" loading="lazy" decoding="async"><span class="showcase-card-name">The Devil</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/16.webp" alt="塔" loading="lazy" decoding="async"><span class="showcase-card-name">The Tower</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/17.webp" alt="星" loading="lazy" decoding="async"><span class="showcase-card-name">The Star</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/18.webp" alt="月" loading="lazy" decoding="async"><span class="showcase-card-name">The Moon</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/19.webp" alt="太陽" loading="lazy" decoding="async"><span class="showcase-card-name">The Sun</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/20.webp" alt="審判" loading="lazy" decoding="async"><span class="showcase-card-name">Judgement</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/21.webp" alt="世界" loading="lazy" decoding="async"><span class="showcase-card-name">The World</span></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/0.webp" alt="愚者" loading="lazy" decoding="async"><span class="showcase-card-name">The Fool</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/1.webp" alt="魔術師" loading="lazy" decoding="async"><span class="showcase-card-name">The Magician</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/2.webp" alt="女教皇" loading="lazy" decoding="async"><span class="showcase-card-name">High Priestess</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/3.webp" alt="女帝" loading="lazy" decoding="async"><span class="showcase-card-name">The Empress</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/4.webp" alt="皇帝" loading="lazy" decoding="async"><span class="showcase-card-name">The Emperor</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/5.webp" alt="教皇" loading="lazy" decoding="async"><span class="showcase-card-name">The Hierophant</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/6.webp" alt="恋人" loading="lazy" decoding="async"><span class="showcase-card-name">The Lovers</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/7.webp" alt="戦車" loading="lazy" decoding="async"><span class="showcase-card-name">The Chariot</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/8.webp" alt="力" loading="lazy" decoding="async"><span class="showcase-card-name">Strength</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/9.webp" alt="隠者" loading="lazy" decoding="async"><span class="showcase-card-name">The Hermit</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/10.webp" alt="運命の輪" loading="lazy" decoding="async"><span class="showcase-card-name">Wheel of Fortune</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/11.webp" alt="正義" loading="lazy" decoding="async"><span class="showcase-card-name">Justice</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/12.webp" alt="吊された男" loading="lazy" decoding="async"><span class="showcase-card-name">Hanged Man</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/13.webp" alt="死神" loading="lazy" decoding="async"><span class="showcase-card-name">Death</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/14.webp" alt="節制" loading="lazy" decoding="async"><span class="showcase-card-name">Temperance</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/15.webp" alt="悪魔" loading="lazy" decoding="async"><span class="showcase-card-name">The Devil</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/16.webp" alt="塔" loading="lazy" decoding="async"><span class="showcase-card-name">The Tower</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/17.webp" alt="星" loading="lazy" decoding="async"><span class="showcase-card-name">The Star</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/18.webp" alt="月" loading="lazy" decoding="async"><span class="showcase-card-name">The Moon</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/19.webp" alt="太陽" loading="lazy" decoding="async"><span class="showcase-card-name">The Sun</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/20.webp" alt="審判" loading="lazy" decoding="async"><span class="showcase-card-name">Judgement</span></div>
-        <div class="showcase-card"><img src="tarot_cards/major_arcana/21.webp" alt="世界" loading="lazy" decoding="async"><span class="showcase-card-name">The World</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-flame"/></svg></span><span class="ins-theme">挑戦</span><span class="ins-title">小さな一歩</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-bolt"/></svg></span><span class="ins-theme">勇気</span><span class="ins-title">一歩前へ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-magnifier"/></svg></span><span class="ins-theme">発見</span><span class="ins-title">観察の目</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-paintbrush"/></svg></span><span class="ins-theme">創造</span><span class="ins-title">色を楽しむ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-tray"/></svg></span><span class="ins-theme">整理</span><span class="ins-title">一日一捨</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-sparkle"/></svg></span><span class="ins-theme">自分磨き</span><span class="ins-title">鏡の前で</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-leaf"/></svg></span><span class="ins-theme">休息</span><span class="ins-title">深い呼吸</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-eye"/></svg></span><span class="ins-theme">感性</span><span class="ins-title">五感を開く</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-heart"/></svg></span><span class="ins-theme">感謝</span><span class="ins-title">ありがとう</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-people"/></svg></span><span class="ins-theme">つながり</span><span class="ins-title">声を届ける</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-flame"/></svg></span><span class="ins-theme">挑戦</span><span class="ins-title">小さな一歩</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-bolt"/></svg></span><span class="ins-theme">勇気</span><span class="ins-title">一歩前へ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-magnifier"/></svg></span><span class="ins-theme">発見</span><span class="ins-title">観察の目</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-paintbrush"/></svg></span><span class="ins-theme">創造</span><span class="ins-title">色を楽しむ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-tray"/></svg></span><span class="ins-theme">整理</span><span class="ins-title">一日一捨</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-sparkle"/></svg></span><span class="ins-theme">自分磨き</span><span class="ins-title">鏡の前で</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-leaf"/></svg></span><span class="ins-theme">休息</span><span class="ins-title">深い呼吸</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-eye"/></svg></span><span class="ins-theme">感性</span><span class="ins-title">五感を開く</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-heart"/></svg></span><span class="ins-theme">感謝</span><span class="ins-title">ありがとう</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-people"/></svg></span><span class="ins-theme">つながり</span><span class="ins-title">声を届ける</span></div>
       </div>
     </div>
 
-    <!-- Minor Arcana Row (reverse direction) -->
+    <!-- 2列目（逆方向） -->
     <div class="showcase-track-wrap">
       <div class="showcase-track" id="minorTrack" style="animation-direction: reverse; animation-duration: 55s;">
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/0.webp" alt="Ace of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/5.webp" alt="Six of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/0.webp" alt="Ace of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/7.webp" alt="Eight of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/0.webp" alt="Ace of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/6.webp" alt="Seven of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/0.webp" alt="Ace of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/9.webp" alt="Ten of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/12.webp" alt="Queen of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/13.webp" alt="King of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/11.webp" alt="Knight of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/10.webp" alt="Page of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/9.webp" alt="Ten of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/3.webp" alt="Four of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/3.webp" alt="Four of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/8.webp" alt="Nine of Pentacles" loading="lazy" decoding="async"></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/0.webp" alt="Ace of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/5.webp" alt="Six of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/0.webp" alt="Ace of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/7.webp" alt="Eight of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/0.webp" alt="Ace of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/6.webp" alt="Seven of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/0.webp" alt="Ace of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/9.webp" alt="Ten of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/12.webp" alt="Queen of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/13.webp" alt="King of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/11.webp" alt="Knight of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/10.webp" alt="Page of Pentacles" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/cups/9.webp" alt="Ten of Cups" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/wands/3.webp" alt="Four of Wands" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/swords/3.webp" alt="Four of Swords" loading="lazy" decoding="async"></div>
-        <div class="showcase-card"><img src="tarot_cards/minor_arcana/pentacles/8.webp" alt="Nine of Pentacles" loading="lazy" decoding="async"></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-people"/></svg></span><span class="ins-theme">つながり</span><span class="ins-title">声を届ける</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-heart"/></svg></span><span class="ins-theme">感謝</span><span class="ins-title">ありがとう</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-eye"/></svg></span><span class="ins-theme">感性</span><span class="ins-title">五感を開く</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-leaf"/></svg></span><span class="ins-theme">休息</span><span class="ins-title">深い呼吸</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-sparkle"/></svg></span><span class="ins-theme">自分磨き</span><span class="ins-title">鏡の前で</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-tray"/></svg></span><span class="ins-theme">整理</span><span class="ins-title">一日一捨</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-paintbrush"/></svg></span><span class="ins-theme">創造</span><span class="ins-title">色を楽しむ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-magnifier"/></svg></span><span class="ins-theme">発見</span><span class="ins-title">観察の目</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-bolt"/></svg></span><span class="ins-theme">勇気</span><span class="ins-title">一歩前へ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-flame"/></svg></span><span class="ins-theme">挑戦</span><span class="ins-title">小さな一歩</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-people"/></svg></span><span class="ins-theme">つながり</span><span class="ins-title">声を届ける</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-heart"/></svg></span><span class="ins-theme">感謝</span><span class="ins-title">ありがとう</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-eye"/></svg></span><span class="ins-theme">感性</span><span class="ins-title">五感を開く</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-leaf"/></svg></span><span class="ins-theme">休息</span><span class="ins-title">深い呼吸</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-sparkle"/></svg></span><span class="ins-theme">自分磨き</span><span class="ins-title">鏡の前で</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-tray"/></svg></span><span class="ins-theme">整理</span><span class="ins-title">一日一捨</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-paintbrush"/></svg></span><span class="ins-theme">創造</span><span class="ins-title">色を楽しむ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-magnifier"/></svg></span><span class="ins-theme">発見</span><span class="ins-title">観察の目</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-bolt"/></svg></span><span class="ins-theme">勇気</span><span class="ins-title">一歩前へ</span></div>
+        <div class="showcase-card"><span class="ins-icon"><svg width="32" height="32"><use href="#icon-flame"/></svg></span><span class="ins-theme">挑戦</span><span class="ins-title">小さな一歩</span></div>
       </div>
     </div>
 
@@ -2091,7 +2088,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="step reveal" style="transition-delay: 0.25s">
           <p class="step-number">STEP II</p>
           <div class="step-icon-wrap">
-            <img src="tarot_cards/major_arcana/1.webp" alt="魔術師" style="width:44px;border-radius:6px;border:1px solid var(--gold-dim);box-shadow:0 4px 12px rgba(0,0,0,0.4)" loading="lazy" decoding="async">
+            <svg width="36" height="36"><use href="#icon-sparkle"/></svg>
           </div>
           <h3>カードを引く</h3>
           <p>画面をタップ。<br>「今日はこういう日」がわかります。</p>
