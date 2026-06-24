@@ -158,7 +158,7 @@ export default async function BlogDetailPage({ params }: Props) {
 
       {tableOfContents.length > 0 ? (
         <aside className="luna-blog-card">
-          <p className="text-sm font-semibold text-[#F7F1E8]">目次（H2 / H3）</p>
+          <p className="text-sm font-semibold text-[#F7F1E8]">目次</p>
           <ul className="mt-3 space-y-2 text-sm leading-7 text-[#C7B0B0]">
             {tableOfContents.map((heading) => (
               <li key={heading.id} className={heading.level === 3 ? "pl-5 text-[#C7B0B0]" : ""}>
