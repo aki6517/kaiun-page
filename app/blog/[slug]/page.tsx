@@ -136,6 +136,10 @@ export default async function BlogDetailPage({ params }: Props) {
     return count === 0 ? baseId : `${baseId}-${count + 1}`;
   };
 
+  const firstH2Index = post.body.indexOf("\n## ");
+  const leadBody = firstH2Index === -1 ? post.body : post.body.slice(0, firstH2Index);
+  const restBody = firstH2Index === -1 ? "" : post.body.slice(firstH2Index);
+
   return (
     <article className="luna-blog-shell space-y-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -201,6 +205,61 @@ export default async function BlogDetailPage({ params }: Props) {
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}
           components={{
+            p: ({ children }) => <p className="mt-5 text-[1.03rem] leading-[2.05] text-[#F7F1E8]">{children}</p>,
+            strong: ({ children }) => <strong className="font-bold text-[#F2E9DA]">{children}</strong>,
+            em: ({ children }) => <em className="text-[#E0CFCB]">{children}</em>,
+            mark: ({ children }) => (
+              <mark className="mx-0.5 rounded bg-[#E8D9C3]/85 px-1.5 py-0.5 font-semibold text-[#2D2428] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                {children}
+              </mark>
+            ),
+            a: ({ href, children }) => (
+              <a
+                href={href}
+                target={href && isExternalLink(href) ? "_blank" : undefined}
+                rel={href && isExternalLink(href) ? "noopener noreferrer" : undefined}
+                className="text-[#F2E9DA] underline underline-offset-4"
+              >
+                {children}
+              </a>
+            ),
+            img: ({ src, alt }) => {
+              if (!src) return null;
+              return (
+                <figure className="my-8 overflow-hidden rounded-2xl border border-[#E8D9C3]/30 bg-[#241D21] p-3">
+                  <img
+                    src={src}
+                    alt={alt ?? ""}
+                    loading="lazy"
+                    className="w-full rounded-xl object-cover shadow-[0_12px_40px_rgba(5,4,12,0.55)]"
+                  />
+                </figure>
+              );
+            }
+          }}
+        >
+          {leadBody}
+        </ReactMarkdown>
+
+        <div className="my-7 rounded-2xl border border-[#E8D9C3]/30 bg-gradient-to-br from-[#3A3035] to-[#2A2226] p-5 text-center">
+          <p className="text-base font-bold text-[#F7F1E8]">開運日を、いつも手の中に。</p>
+          <p className="mt-1.5 text-sm leading-7 text-[#C7B0B0]">
+            開運カレンダー『ルナ』なら、一粒万倍日や天赦日などの吉日を、毎日の予定とまとめて確認できます。
+          </p>
+          <a
+            href="https://apps.apple.com/jp/app/%E9%96%8B%E9%81%8B%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%AB%E3%83%8A/id6758544903"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block rounded-full bg-[#E8D9C3] px-7 py-2.5 font-semibold text-[#2D2428] transition hover:bg-[#F2E9DA]"
+          >
+            App Storeで無料ダウンロード
+          </a>
+        </div>
+
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          components={{
             h2: ({ children }) => {
               const text = getTextFromNode(children);
               const id = resolveHeadingId(text);
@@ -242,7 +301,6 @@ export default async function BlogDetailPage({ params }: Props) {
                     loading="lazy"
                     className="w-full rounded-xl object-cover shadow-[0_12px_40px_rgba(5,4,12,0.55)]"
                   />
-                  {alt ? <figcaption className="mt-3 text-sm text-[#C7B0B0]">{alt}</figcaption> : null}
                 </figure>
               );
             },
@@ -317,7 +375,7 @@ export default async function BlogDetailPage({ params }: Props) {
             }
           }}
         >
-          {post.body}
+          {restBody}
         </ReactMarkdown>
       </div>
 
