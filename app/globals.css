@@ -17,8 +17,13 @@ body {
   min-height: 100vh;
 }
 
-a {
-  color: inherit;
+/* a の既定色は inherit にしつつ、@layer base に入れることで Tailwind の
+   text-[...] ユーティリティ（utilities レイヤー）が確実に上書きできるようにする。
+   レイヤー外に置くと utilities より優先され、ボタン等の文字色指定が無効化されるため注意。 */
+@layer base {
+  a {
+    color: inherit;
+  }
 }
 
 .luna-blog-shell {

@@ -11,7 +11,7 @@ function getBadges(m: DayMark): Badge[] {
   const b: Badge[] = [];
   if (m.tensha) b.push({ label: "天赦", cls: "bg-[#E8D9C3] text-[#2D2428] font-semibold" });
   if (m.ichiryu) b.push({ label: "一粒", cls: "bg-[#E0D2BC]/90 text-[#2D2428]" });
-  if (m.taian) b.push({ label: "大安", cls: "bg-[#8B9A5B]/85 text-white" });
+  if (m.taian) b.push({ label: "大安", cls: "bg-[#9DAE68] text-[#2D2428]" });
   if (m.tora) b.push({ label: "寅", cls: "bg-[#C79FA5]/85 text-[#2D2428]" });
   if (m.mi) b.push({ label: "巳", cls: "bg-[#C79FA5]/85 text-[#2D2428]" });
   if (m.fujoju) b.push({ label: "不成就", cls: "bg-[#5A4A52] text-[#E8DAD6]" });
