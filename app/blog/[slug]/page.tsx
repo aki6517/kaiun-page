@@ -16,6 +16,7 @@ import {
 } from "@/lib/blog";
 import { getSiteUrl } from "@/lib/site";
 import { createBreadcrumbListJsonLd } from "@/lib/structured-data";
+import KaiunCalendar from "@/components/kaiun-calendar";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -155,6 +156,30 @@ export default async function BlogDetailPage({ params }: Props) {
           公開日: {post.date} / 更新日: {post.updated}
         </p>
       </header>
+
+      {post.slug === "kaiun-calendar" ? (
+        <section className="luna-blog-card space-y-4">
+          <h2 className="text-2xl font-bold leading-relaxed text-[#F7F1E8]">2026年の開運カレンダーを確認</h2>
+          <p className="text-[1.02rem] leading-[2.0] text-[#F7F1E8]">
+            一粒万倍日や天赦日などの吉日、不成就日などの注意日、満月・新月がひと目でわかります。◀ ▶ で月を切り替えてチェックしてみてください。
+          </p>
+          <KaiunCalendar />
+          <div className="rounded-2xl border border-[#E8D9C3]/30 bg-gradient-to-br from-[#3A3035] to-[#2A2226] p-5 text-center">
+            <p className="text-lg font-bold text-[#F7F1E8]">開運日を、いつも手の中に。</p>
+            <p className="mt-1.5 text-sm leading-7 text-[#C7B0B0]">
+              開運カレンダー『ルナ』なら、その日の吉日を確認しながら、毎日の予定もまとめて管理できます。
+            </p>
+            <a
+              href="https://apps.apple.com/jp/app/%E9%96%8B%E9%81%8B%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%AB%E3%83%8A/id6758544903"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block rounded-full bg-[#E8D9C3] px-7 py-2.5 font-semibold text-[#2D2428] transition hover:bg-[#F2E9DA]"
+            >
+              App Storeで無料ダウンロード
+            </a>
+          </div>
+        </section>
+      ) : null}
 
       {tableOfContents.length > 0 ? (
         <aside className="luna-blog-card">
