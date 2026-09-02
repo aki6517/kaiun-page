@@ -42,16 +42,26 @@ export default function PrivacyPolicyPage() {
       <ul>
         <li>アクセス解析のための匿名データ</li>
         <li>お問い合わせ時に提供される情報</li>
+        <li>無料AI鑑定のお申し込み時に提供される氏名・生年月日・メールアドレス</li>
       </ul>
       <h2>利用目的</h2>
       <ul>
         <li>サービス改善</li>
         <li>不具合調査</li>
         <li>利用状況分析</li>
+        <li>無料AI鑑定の鑑定書の生成・送付・購入管理</li>
       </ul>
       <h2>外部サービス</h2>
       <p>
         Google Analytics 等の計測ツールを利用する場合があります。必要に応じてCookieが使用されます。
+      </p>
+      <p>
+        無料AI鑑定の提供にあたり、鑑定文の生成をAnthropic Claude、メール配信をResend、申込みデータの保管をSupabaseへ委託します。
+      </p>
+      <h2>保存期間・削除請求</h2>
+      <p>未購入の無料AI鑑定の申込みデータは、12ヶ月を目安に削除します。</p>
+      <p>
+        個人情報の削除をご希望の場合は、<a href="mailto:pugwriting@gmail.com">pugwriting@gmail.com</a> までご連絡ください。
       </p>
       <h2>改定</h2>
       <p>本ポリシーは必要に応じて改定されます。改定後は本ページに掲載した時点で有効となります。</p>

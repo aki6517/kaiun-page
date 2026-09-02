@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import {
   EMPTY_TRACKING_TAG_CONFIG,
   getEnvTrackingTagConfig,
@@ -111,7 +112,16 @@ function applyTrackingTags(): void {
 }
 
 export function TrackingTagInjector() {
+  const pathname = usePathname();
+
   useEffect(() => {
+    if (pathname.startsWith("/kantei/result/")) {
+      removeSlotNodes("head");
+      removeSlotNodes("bodyStart");
+      removeSlotNodes("bodyEnd");
+      return;
+    }
+
     applyTrackingTags();
 
     const handleUpdate = () => applyTrackingTags();
@@ -126,7 +136,7 @@ export function TrackingTagInjector() {
       window.removeEventListener(TRACKING_UPDATED_EVENT, handleUpdate);
       window.removeEventListener("storage", handleStorage);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

@@ -23,11 +23,15 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <Script id="gtm-head" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          {`(function(){
+// 結果URLはトークンを含むため、外部計測（GA4/Clarity等）に送らない。
+if (location.pathname.startsWith('/kantei/result/')) return;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TXC4STFD');`}
+})(window,document,'script','dataLayer','GTM-TXC4STFD');
+})();`}
         </Script>
       </head>
       <body className="min-h-screen bg-[#2D2428] text-[#F7F1E8] antialiased">
