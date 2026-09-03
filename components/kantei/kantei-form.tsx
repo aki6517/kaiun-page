@@ -140,7 +140,7 @@ export function KanteiForm() {
       <input type="hidden" name="formStartedAt" value={formStartedAt ?? ""} />
 
       <div>
-        <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#F7F1E8]">
+        <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#4A3F3B]">
           お名前
         </label>
         <input
@@ -155,19 +155,20 @@ export function KanteiForm() {
           onChange={(event) => updateValue("name", event.target.value)}
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "name-error" : undefined}
-          className="w-full rounded-xl border border-white/20 bg-[#2D2428] px-4 py-3 text-base text-[#F7F1E8] outline-none transition focus-visible:border-[#E8D9C3] focus-visible:ring-2 focus-visible:ring-[#E8D9C3]/30"
+          className="w-full min-w-0 rounded-none border border-[#8A6A3B] bg-[#FDFBF7] px-4 py-3 text-base text-[#4A3F3B] outline-none transition-colors aria-[invalid=true]:border-[#B7848C] focus-visible:border-[#8A6A3B] focus-visible:ring-2 focus-visible:ring-[#B7848C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFBF7]"
         />
-        {errors.name ? <p id="name-error" className="mt-2 text-sm text-[#F0B4B4]">{errors.name}</p> : null}
+        {errors.name ? <p id="name-error" aria-live="polite" className="mt-2 text-sm font-medium text-[#4A3F3B]">{errors.name}</p> : null}
       </div>
 
       <div>
-        <label htmlFor="birthDate" className="mb-2 block text-sm font-semibold text-[#F7F1E8]">
+        <label htmlFor="birthDate" className="mb-2 block text-sm font-medium text-[#4A3F3B]">
           生年月日
         </label>
         <input
           id="birthDate"
           name="birthDate"
           type="date"
+          autoComplete="bday"
           required
           min={min}
           max={max}
@@ -175,13 +176,13 @@ export function KanteiForm() {
           onChange={(event) => updateValue("birthDate", event.target.value)}
           aria-invalid={Boolean(errors.birthDate)}
           aria-describedby={errors.birthDate ? "birthDate-error" : undefined}
-          className="w-full rounded-xl border border-white/20 bg-[#2D2428] px-4 py-3 text-base text-[#F7F1E8] outline-none transition focus-visible:border-[#E8D9C3] focus-visible:ring-2 focus-visible:ring-[#E8D9C3]/30"
+          className="w-full min-w-0 rounded-none border border-[#8A6A3B] bg-[#FDFBF7] px-4 py-3 text-base text-[#4A3F3B] outline-none transition-colors [color-scheme:light] aria-[invalid=true]:border-[#B7848C] focus-visible:border-[#8A6A3B] focus-visible:ring-2 focus-visible:ring-[#B7848C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFBF7]"
         />
-        {errors.birthDate ? <p id="birthDate-error" className="mt-2 text-sm text-[#F0B4B4]">{errors.birthDate}</p> : null}
+        {errors.birthDate ? <p id="birthDate-error" aria-live="polite" className="mt-2 text-sm font-medium text-[#4A3F3B]">{errors.birthDate}</p> : null}
       </div>
 
       <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#F7F1E8]">
+        <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#4A3F3B]">
           メールアドレス
         </label>
         <input
@@ -196,13 +197,13 @@ export function KanteiForm() {
           onChange={(event) => updateValue("email", event.target.value)}
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "email-error" : undefined}
-          className="w-full rounded-xl border border-white/20 bg-[#2D2428] px-4 py-3 text-base text-[#F7F1E8] outline-none transition focus-visible:border-[#E8D9C3] focus-visible:ring-2 focus-visible:ring-[#E8D9C3]/30"
+          className="w-full min-w-0 rounded-none border border-[#8A6A3B] bg-[#FDFBF7] px-4 py-3 text-base text-[#4A3F3B] outline-none transition-colors aria-[invalid=true]:border-[#B7848C] focus-visible:border-[#8A6A3B] focus-visible:ring-2 focus-visible:ring-[#B7848C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFBF7]"
         />
-        {errors.email ? <p id="email-error" className="mt-2 text-sm text-[#F0B4B4]">{errors.email}</p> : null}
+        {errors.email ? <p id="email-error" aria-live="polite" className="mt-2 text-sm font-medium text-[#4A3F3B]">{errors.email}</p> : null}
       </div>
 
       <div>
-        <label htmlFor="consent" className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-[#E0CFCB]">
+        <label htmlFor="consent" className="flex cursor-pointer items-start gap-3 text-sm leading-6 text-[#4A3F3B]">
           <input
             id="consent"
             name="consent"
@@ -212,28 +213,28 @@ export function KanteiForm() {
             onChange={(event) => updateValue("consent", event.target.checked)}
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={errors.consent ? "consent-error" : undefined}
-            className="mt-1 size-4 accent-[#B7848C]"
+            className="mt-1 size-4 shrink-0 accent-[#B7848C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8A6A3B]"
           />
           <span>
-            <Link href="/privacy-policy" className="text-[#E8D9C3] underline decoration-[#E8D9C3]/60 underline-offset-4">
+            <Link href="/privacy-policy" className="font-medium text-[#8A6A3B] underline decoration-[#8A6A3B] underline-offset-4">
               個人情報の取り扱い
             </Link>
             に同意する
           </span>
         </label>
-        {errors.consent ? <p id="consent-error" className="mt-2 text-sm text-[#F0B4B4]">{errors.consent}</p> : null}
+        {errors.consent ? <p id="consent-error" aria-live="polite" className="mt-2 text-sm font-medium text-[#4A3F3B]">{errors.consent}</p> : null}
       </div>
 
-      {submitError ? <p id="kantei-submit-error" aria-live="polite" className="text-sm text-[#F0B4B4]">{submitError}</p> : null}
+      {submitError ? <p id="kantei-submit-error" aria-live="polite" className="text-sm font-medium text-[#4A3F3B]">{submitError}</p> : null}
 
       <button
         type="submit"
         disabled={isSubmitting || isDone}
-        className="w-full rounded-full bg-[#E8D9C3] px-6 py-4 text-base font-bold text-[#2D2428] transition hover:bg-[#F7F1E8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8D9C3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2D2428] disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full min-h-11 touch-manipulation bg-[#B08A4F] px-6 py-4 text-base font-bold text-[#2D2428] transition-colors hover:bg-[#D9C08F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8A6A3B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFBF7] disabled:cursor-not-allowed disabled:bg-[#D9C08F] disabled:text-[#2D2428]"
       >
         {submitButtonLabel}
       </button>
-      <p className="text-center text-xs leading-6 text-[#C7B0B0]">
+      <p className="text-center text-sm leading-7 text-[#4A3F3B]">
         鑑定書は24時間以内を目安にメールでお届けします。順次作成のため前後する場合があります。
       </p>
     </form>
