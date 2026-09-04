@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Script from "next/script";
+import { HardNavigationLink } from "@/components/hard-navigation-link";
 import { TrackingTagInjector } from "@/components/tracking-tag-injector";
 import "./globals.css";
 import { getSiteUrl, siteConfig } from "@/lib/site";
@@ -24,8 +24,8 @@ export default function RootLayout({
       <head>
         <Script id="gtm-head" strategy="beforeInteractive">
           {`(function(){
-// 結果URLはトークンを含むため、外部計測（GA4/Clarity等）に送らない。
-if (location.pathname.startsWith('/kantei/result/')) return;
+// 決済URLはトークンを含むため、外部計測（GA4/Clarity等）に送らない。
+if (location.pathname === '/kantei/pay') return;
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -35,24 +35,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </Script>
       </head>
       <body className="min-h-screen bg-[#2D2428] text-[#F7F1E8] antialiased">
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TXC4STFD"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         <TrackingTagInjector />
         <header className="border-b border-white/10">
           <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
-            <Link href="/" className="font-semibold tracking-wide text-[#E8D9C3]">
+            <HardNavigationLink href="/" className="font-semibold tracking-wide text-[#E8D9C3]">
               開運ルナカレンダー
-            </Link>
+            </HardNavigationLink>
             <div className="flex items-center gap-5 text-sm text-[#C7B0B0]">
-              <Link href="/">ホーム</Link>
-              <Link href="/blog">ブログ</Link>
-              <Link href="/privacy-policy">プライバシー</Link>
+              <HardNavigationLink href="/">ホーム</HardNavigationLink>
+              <HardNavigationLink href="/blog">ブログ</HardNavigationLink>
+              <HardNavigationLink href="/privacy-policy">プライバシー</HardNavigationLink>
             </div>
           </nav>
         </header>

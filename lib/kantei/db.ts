@@ -11,27 +11,20 @@ const submissionSchema = z.discriminatedUnion("outcome", [
   z.object({ outcome: z.literal("rate_limited"), token: z.null() })
 ]);
 
-const freeResultSchema = z.object({
-  essence: z.string().min(1),
-  healing_word: z.object({
-    phrase: z.string().min(1),
-    body: z.string().min(1)
-  }),
-  this_year_digest: z.string().min(1)
-});
-
-const resultRowSchema = z.discriminatedUnion("status", [
-  z.object({ status: z.literal("pending"), paid: z.boolean(), free: freeResultSchema.nullable().optional() }),
-  z.object({ status: z.literal("failed"), paid: z.boolean(), free: freeResultSchema.nullable().optional() }),
-  z.object({ status: z.literal("generated"), paid: z.boolean(), free: freeResultSchema })
+const payPageRowSchema = z.discriminatedUnion("status", [
+  z.object({ status: z.literal("pending"), name: z.string().min(1) }),
+  z.object({ status: z.literal("failed"), name: z.string().min(1) }),
+  z.object({
+    status: z.literal("generated"),
+    name: z.string().min(1),
+    paid: z.boolean(),
+    artifact_ready_at: z.string().nullable(),
+    paid_pdf_sent_at: z.string().nullable()
+  })
 ]);
 
 export type KanteiSubmission = z.infer<typeof submissionSchema>;
-export type KanteiFreeResult = z.infer<typeof freeResultSchema>;
-export type KanteiResultForPage =
-  | { status: "pending"; paid: boolean; free: KanteiFreeResult | null }
-  | { status: "failed"; paid: boolean; free: KanteiFreeResult | null }
-  | { status: "generated"; paid: boolean; free: KanteiFreeResult };
+export type KanteiPayPageState = z.infer<typeof payPageRowSchema>;
 
 function getSupabaseClient() {
   const url = process.env.SUPABASE_URL;
@@ -75,31 +68,25 @@ export async function submitKantei(input: {
   return parsed.data[0];
 }
 
-export async function getResultForPage(token: string): Promise<KanteiResultForPage | null> {
+export async function getPayPageState(token: string): Promise<KanteiPayPageState | null> {
   const supabase = getSupabaseClient();
   const { data, error } = await supabase
     .from("kantei_requests")
-    .select("status, paid, free:result->free")
+    .select("status, paid, name, artifact_ready_at, paid_pdf_sent_at")
     .eq("id", token)
     .abortSignal(AbortSignal.timeout(SUPABASE_TIMEOUT_MS))
     .maybeSingle();
 
   if (error) {
-    throw new Error("Kantei result lookup failed.");
+    throw new Error("Kantei payment lookup failed.");
   }
 
   if (!data) return null;
 
-  const parsed = resultRowSchema.safeParse(data);
+  const parsed = payPageRowSchema.safeParse(data);
   if (!parsed.success) {
-    throw new Error("Kantei result returned an invalid response.");
+    throw new Error("Kantei payment lookup returned an invalid response.");
   }
 
-  if (parsed.data.status === "generated") return parsed.data;
-
-  return {
-    status: parsed.data.status,
-    paid: parsed.data.paid,
-    free: parsed.data.free ?? null
-  };
+  return parsed.data;
 }

@@ -115,7 +115,10 @@ export function TrackingTagInjector() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith("/kantei/result/")) {
+    // このガードは初回マウント時のみ効く。`/kantei/pay` へはメール・PDFのリンク（hard navigation）からしか入らない前提。
+    // サイト内から `<Link>` / `router.push` で `/kantei/pay` へ遷移する導線を作らないこと。
+    // 作ると外部タグが token 付きURLを拾う。
+    if (pathname === "/kantei/pay") {
       removeSlotNodes("head");
       removeSlotNodes("bodyStart");
       removeSlotNodes("bodyEnd");
