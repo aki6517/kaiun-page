@@ -17,6 +17,47 @@ function escapeHtml(value: string): string {
   });
 }
 
+// 本番は本番URL。プレビュー環境ではそのデプロイのURLを使い、検証時にリンクが404にならないようにする。
+// 許可するのは自社ドメインとVercelプレビュー(*.vercel.app)だけ＝メールのリンクを第三者ホストへ差し替えられないようにする。
+const ALLOWED_RESULT_HOSTS = ["kaiun-calendar.com", "www.kaiun-calendar.com"];
+const ALLOWED_RESULT_HOST_SUFFIX = ".vercel.app";
+
+function isAllowedResultOrigin(candidate: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(candidate);
+  } catch {
+    return false;
+  }
+
+  if (url.protocol !== "https:") return false;
+  if (url.username !== "" || url.password !== "") return false;
+  if (url.port !== "") return false;
+  if (url.pathname !== "/" || url.search !== "" || url.hash !== "") return false;
+
+  const host = url.hostname.toLowerCase();
+  if (ALLOWED_RESULT_HOSTS.includes(host)) return true;
+  if (!host.endsWith(ALLOWED_RESULT_HOST_SUFFIX)) return false;
+
+  const label = host.slice(0, -ALLOWED_RESULT_HOST_SUFFIX.length);
+  return /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/.test(label)
+    && !label.startsWith("xn--")
+    && !label.includes(".xn--");
+}
+
+function resultOrigin(): string {
+  const override = process.env.KANTEI_RESULT_ORIGIN?.trim();
+  if (override && isAllowedResultOrigin(override)) return new URL(override).origin;
+
+  if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") {
+    const host = (process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL)?.trim();
+    const candidate = host ? `https://${host}` : "";
+    if (candidate && isAllowedResultOrigin(candidate)) return new URL(candidate).origin;
+  }
+
+  return getSiteUrl();
+}
+
 function getEmailConfig(): { apiKey: string; from: string } {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.KANTEI_FROM_EMAIL;
@@ -58,13 +99,12 @@ function createAcceptanceEmailHtml(name: string, resultUrl: string, isDuplicate:
 
                   <p style="margin:0;color:#4A3F3B;font-size:16px;line-height:2;">作成状況と完成した無料鑑定は、以下のページからもご確認いただけます。</p>
                   <p style="margin:24px 0 0;text-align:center;">
-                    <a href="${safeResultUrl}" style="display:inline-block;padding:13px 24px;background-color:#B08A4F;color:#2D2428;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none;">鑑定結果ページを開く</a>
+                    <a href="${safeResultUrl}" style="display:inline-block;padding:13px 24px;background-color:#B08A4F;color:#2D2428;font-size:16px;font-weight:700;line-height:1.5;text-decoration:none;">鑑定の詳細を見る</a>
                   </p>
                   <p style="margin:24px 0 0;color:#4A3F3B;font-size:14px;line-height:2;">メールが見当たらない場合は、迷惑メールフォルダもご確認ください。</p>
                 </div>
 
                 <p style="margin:30px 0 0;color:#8A6A3B;font-size:14px;line-height:2;">─ ✦ ─</p>
-                <p style="margin:12px 0 0;color:#4A3F3B;font-size:14px;line-height:2;">本鑑定はAI鑑定システムが生成しています（紗々・マグダレナ監修）</p>
               </td>
             </tr>
           </table>
@@ -82,7 +122,7 @@ type KanteiEmailInput = {
 
 async function sendKanteiEmail(input: KanteiEmailInput & { isDuplicate: boolean; idempotencyKey: string }): Promise<void> {
   const { apiKey, from } = getEmailConfig();
-  const resultUrl = `${getSiteUrl()}/kantei/result/${input.token}`;
+  const resultUrl = `${resultOrigin()}/kantei/result/${input.token}`;
   const subject = input.isDuplicate ? "無料AI鑑定のお申し込みを受け付けています" : "無料AI鑑定を受け付けました";
 
   const response = await fetch("https://api.resend.com/emails", {
